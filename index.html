@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software House Sob Medida | Ateliware</title>
+    <meta name="description"
+        content="Ateliware é uma software house focada em desenvolvimento de software personalizado e produtos digitais que transformam negócios.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['Sora', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Skip links -->
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+    <a href="#footer" class="skip-link">Pular para o rodapé</a>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-inner">
+            <a href="#" class="logo">
+                <svg class="logo-icon" width="40" height="32" viewBox="0 0 40 32" fill="none">
+                    <path
+                        d="M20 0C15 0 11 3 9 7C7 3 3 0 0 2C3 5 5 10 5 16C5 22 3 27 0 30C3 32 7 29 9 25C11 29 15 32 20 32C25 32 29 29 31 25C33 29 37 32 40 30C37 27 35 22 35 16C35 10 37 5 40 2C37 0 33 3 31 7C29 3 25 0 20 0Z"
+                        fill="#E11D48" />
+                </svg>
+                <span class="logo-text">ateliware</span>
+            </a>
+            <nav class="nav-main">
+                <a href="#servicos" class="nav-link">Serviços</a>
+                <a href="#" class="nav-link">Inteligência Artificial</a>
+                <a href="#" class="nav-link">Sobre</a>
+                <a href="#cases" class="nav-link">Cases</a>
+                <a href="#" class="nav-link">Blog</a>
+            </nav>
+            <div class="header-actions">
+                <button class="btn-lang">
+                    PT
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <path
+                            d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                    </svg>
+                </button>
+                <a href="#contato" class="btn-primary btn-contact-header">
+                    Entrar em contato
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <nav class="mobile-nav">
+            <a href="#servicos" class="mobile-nav-link">Serviços</a>
+            <a href="#" class="mobile-nav-link">Inteligência Artificial</a>
+            <a href="#" class="mobile-nav-link">Sobre</a>
+            <a href="#cases" class="mobile-nav-link">Cases</a>
+            <a href="#" class="mobile-nav-link">Blog</a>
+            <a href="#contato" class="btn-primary" style="margin-top:1rem;display:inline-flex">Entrar em contato →</a>
+        </nav>
+    </div>
+
+    <!-- Cinematic Scroll Stage -->
+    <main id="main-content">
+        <div class="scroll-stage" id="scrollStage">
+            <section class="hero shader-hero" id="heroSection">
+                <canvas id="shaderCanvas" class="shader-canvas"></canvas>
+                <div class="hero-content shader-content" id="heroContent">
+                    <p class="hero-subtitle shader-subtitle" id="heroSubtitle">
+                        <span class="bracket">&lt;</span> ATELIÊ DE SOFTWARE E IA <span class="bracket">/&gt;</span>
+                    </p>
+                    <h1 class="hero-title shader-title" id="heroTitle">
+                        Soluções de software e IA
+                        <span class="hero-title-accent shader-accent">de projetos que<br>deram certo</span>
+                    </h1>
+                    <a href="#contato" class="btn-shader-cta hero-cta" id="heroCta">
+                        Entrar em contato
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                    <!-- Morph title — crossfades in during scroll -->
+                    <div class="morph-title" id="morphTitle">
+                        <p class="morph-label">
+                            <span class="bracket">&lt;</span> POR QUE NOS ESCOLHER <span class="bracket">/&gt;</span>
+                        </p>
+                        <h2 class="morph-heading">Motivos para usar nossos serviços<br>no seu negócio</h2>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Motivos Section — slides over the hero -->
+        <section class="cases-section motivos-reveal" id="cases">
+            <div class="container">
+                <div class="section-label motivos-header-hidden">
+                    <span class="bracket">&lt;</span> POR QUE NOS ESCOLHER <span class="bracket">/&gt;</span>
+                </div>
+                <h2 class="section-title motivos-header-hidden">Motivos para usar nossos serviços<br>no seu negócio</h2>
+            </div>
+
+            <!-- Motivos Carousel -->
+            <div class="cases-carousel-wrapper">
+                <div class="cases-carousel" id="casesCarousel">
+                    <div class="case-card"
+                        style="background: linear-gradient(135deg, rgba(0,0,0,0.75), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600') center/cover">
+                        <span class="case-tag">TECNOLOGIA</span>
+                        <h3 class="case-title">Tecnologia sob medida para o seu negócio</h3>
+                        <p class="case-desc">Desenvolvemos soluções personalizadas que se adaptam às necessidades reais
+                            da sua empresa, sem depender de ferramentas genéricas</p>
+                        <span class="case-arrow">→</span>
+                    </div>
+                    <div class="case-card"
+                        style="background: linear-gradient(135deg, rgba(0,0,0,0.75), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600') center/cover">
+                        <span class="case-tag tag-ai">IA</span>
+                        <h3 class="case-title">Inteligência Artificial integrada aos processos</h3>
+                        <p class="case-desc">Automatize tarefas, preveja tendências e tome decisões mais inteligentes
+                            com IA aplicada diretamente ao seu fluxo de trabalho</p>
+                        <span class="case-arrow">→</span>
+                    </div>
+                    <div class="case-card"
+                        style="background: linear-gradient(135deg, rgba(0,0,0,0.75), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600') center/cover">
+                        <span class="case-tag">ESCALABILIDADE</span>
+                        <h3 class="case-title">Infraestrutura pronta para crescer com você</h3>
+                        <p class="case-desc">Arquiteturas modernas, escaláveis e seguras que acompanham o crescimento do
+                            seu negócio sem gargalos</p>
+                        <span class="case-arrow">→</span>
+                    </div>
+                    <div class="case-card"
+                        style="background: linear-gradient(135deg, rgba(0,0,0,0.75), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=600') center/cover">
+                        <span class="case-tag">AGILIDADE</span>
+                        <h3 class="case-title">Entregas rápidas com metodologia ágil</h3>
+                        <p class="case-desc">Sprints curtos, entregas contínuas e comunicação transparente para que você
+                            veja resultados desde o primeiro mês</p>
+                        <span class="case-arrow">→</span>
+                    </div>
+                    <div class="case-card"
+                        style="background: linear-gradient(135deg, rgba(0,0,0,0.75), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600') center/cover">
+                        <span class="case-tag">SUPORTE</span>
+                        <h3 class="case-title">Time dedicado ao seu projeto</h3>
+                        <p class="case-desc">Equipe multidisciplinar com desenvolvedores, designers e especialistas em
+                            IA trabalhando exclusivamente para o seu sucesso</p>
+                        <span class="case-arrow">→</span>
+                    </div>
+                    <div class="case-card"
+                        style="background: linear-gradient(135deg, rgba(0,0,0,0.75), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600') center/cover">
+                        <span class="case-tag">RESULTADOS</span>
+                        <h3 class="case-title">Resultados mensuráveis e ROI comprovado</h3>
+                        <p class="case-desc">Mais de R$ 2 bilhões processados por nossos clientes — cada projeto é
+                            acompanhado por métricas claras de impacto no negócio</p>
+                        <span class="case-arrow">→</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Client Logos -->
+            <div class="container">
+                <div class="client-logos">
+                    <div class="logo-item"><span class="client-text votorantim">VOTORANTIM</span></div>
+                    <div class="logo-item"><span class="client-text trio">◇Trio</span></div>
+                    <div class="logo-item"><span class="client-text foodtosave">Food to Save</span></div>
+                    <div class="logo-item"><span class="client-text pipefy">pipefy</span></div>
+                    <div class="logo-item"><span class="client-text uninter">UNINTER</span></div>
+                    <div class="logo-item"><span class="client-text lucy">lucy</span></div>
+                    <div class="logo-item"><span class="client-text bmg">bmg</span></div>
+                    <div class="logo-item"><span class="client-text aviagen">Aviagen</span></div>
+                    <div class="logo-item"><span class="client-text matrixcargo">matrixcargo</span></div>
+                    <div class="logo-item"><span class="client-text zeron">ZERON</span></div>
+                    <div class="logo-item"><span class="client-text timeseer">timeseer.AI</span></div>
+                    <div class="logo-item"><span class="client-text prismos">prismos</span></div>
+                    <div class="logo-item"><span class="client-text agro1">agro1</span></div>
+                    <div class="logo-item"><span class="client-text sicoob">SICOOB</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services-section" id="servicos">
+            <div class="container">
+                <div class="section-label section-label-dark">
+                    <span class="bracket">&lt;</span> NOSSA EXPERTISE <span class="bracket">/&gt;</span>
+                </div>
+                <h2 class="section-title section-title-dark">
+                    Serviços de software e IA para<br>
+                    <span class="title-accent">gerar negócios e resolver problemas</span>
+                </h2>
+
+                <!-- Tabs -->
+                <div class="services-tabs">
+                    <button class="tab-btn active" data-tab="startups">Para Startups & Enterprise</button>
+                    <button class="tab-btn" data-tab="ia">Inteligência Artificial</button>
+                    <button class="tab-btn" data-tab="consultoria">Consultoria para negócios digitais</button>
+                    <button class="tab-btn" data-tab="demanda">Soluções sob-demanda</button>
+                </div>
+
+                <!-- Tab Content: Startups -->
+                <div class="tab-content active" id="tab-startups">
+                    <div class="services-grid">
+                        <a href="#" class="service-card">
+                            <div class="service-icon service-icon-discovery">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <circle cx="11" cy="11" r="8" />
+                                    <path d="M21 21l-4.35-4.35" />
+                                    <rect x="7" y="8" width="8" height="1" rx="0.5" fill="currentColor" />
+                                    <rect x="7" y="11" width="6" height="1" rx="0.5" fill="currentColor" />
+                                </svg>
+                            </div>
+                            <h3 class="service-name">Discovery</h3>
+                            <p class="service-desc">Clareza antes de agir</p>
+                            <span class="service-arrow">→</span>
+                        </a>
+                        <a href="#" class="service-card">
+                            <div class="service-icon service-icon-concept">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M12 2L6 7v6l6 5 6-5V7l-6-5z" />
+                                    <circle cx="12" cy="10" r="2" />
+                                </svg>
+                            </div>
+                            <h3 class="service-name">Product Concept</h3>
+                            <p class="service-desc">A forma da sua solução</p>
+                            <span class="service-arrow">→</span>
+                        </a>
+                        <a href="#" class="service-card">
+                            <div class="service-icon service-icon-build">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M8 5l-5 7 5 7" />
+                                    <path d="M16 5l5 7-5 7" />
+                                    <path d="M14 4l-4 16" />
+                                </svg>
+                            </div>
+                            <h3 class="service-name">Build</h3>
+                            <p class="service-desc">Desenvolvimento de software</p>
+                            <span class="service-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tab Content: IA -->
+                <div class="tab-content" id="tab-ia">
+                    <div class="services-grid">
+                        <a href="#" class="service-card">
+                            <div class="service-icon service-icon-discovery">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <circle cx="11" cy="11" r="8" />
+                                    <path d="M21 21l-4.35-4.35" />
+                                </svg>
+                            </div>
+                            <h3 class="service-name">Discovery de IA</h3>
+                            <p class="service-desc">Exploração inteligente de dados</p>
+                            <span class="service-arrow">→</span>
+                        </a>
+                        <a href="#" class="service-card">
+                            <div class="service-icon service-icon-concept">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path
+                                        d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83" />
+                                    <circle cx="12" cy="12" r="4" />
+                                </svg>
+                            </div>
+                            <h3 class="service-name">Desenvolvimento de IA</h3>
+                            <p class="service-desc">Soluções com inteligência artificial</p>
+                            <span class="service-arrow">→</span>
+                        </a>
+                        <a href="#" class="service-card">
+                            <div class="service-icon service-icon-build">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <rect x="3" y="3" width="7" height="7" rx="1" />
+                                    <rect x="14" y="3" width="7" height="7" rx="1" />
+                                    <rect x="3" y="14" width="7" height="7" rx="1" />
+                                    <rect x="14" y="14" width="7" height="7" rx="1" />
+                                </svg>
+                            </div>
+                            <h3 class="service-name">Squads Especializados</h3>
+                            <p class="service-desc">Times dedicados de IA</p>
+                            <span class="service-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tab Content: Consultoria -->
+                <div class="tab-content" id="tab-consultoria">
+                    <div class="services-grid">
+                        <a href="#" class="service-card">
+                            <div class="service-icon service-icon-discovery">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path
+                                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                                </svg>
+                            </div>
+                            <h3 class="service-name">Consultoria técnica</h3>
+                            <p class="service-desc">Orientação especializada</p>
+                            <span class="service-arrow">→</span>
+                        </a>
+                        <a href="#" class="service-card">
+                            <div class="service-icon service-icon-concept">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+                                </svg>
+                            </div>
+                            <h3 class="service-name">Identidade de Produto</h3>
+                            <p class="service-desc">Design e branding de produto</p>
+                            <span class="service-arrow">→</span>
+                        </a>
+                        <a href="#" class="service-card">
+                            <div class="service-icon service-icon-build">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                    <circle cx="9" cy="7" r="4" />
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+                                </svg>
+                            </div>
+                            <h3 class="service-name">Design de Serviço</h3>
+                            <p class="service-desc">Experiência do cliente</p>
+                            <span class="service-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tab Content: Demanda -->
+                <div class="tab-content" id="tab-demanda">
+                    <div class="services-grid">
+                        <a href="#" class="service-card">
+                            <div class="service-icon service-icon-discovery">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <rect x="3" y="3" width="7" height="7" rx="1" />
+                                    <rect x="14" y="3" width="7" height="7" rx="1" />
+                                    <rect x="3" y="14" width="7" height="7" rx="1" />
+                                    <rect x="14" y="14" width="7" height="7" rx="1" />
+                                </svg>
+                            </div>
+                            <h3 class="service-name">Alocação de Squad</h3>
+                            <p class="service-desc">Times sob demanda</p>
+                            <span class="service-arrow">→</span>
+                        </a>
+                        <a href="#" class="service-card">
+                            <div class="service-icon service-icon-concept">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z" />
+                                </svg>
+                            </div>
+                            <h3 class="service-name">Microsoft Dynamics F&O</h3>
+                            <p class="service-desc">Implementação e suporte</p>
+                            <span class="service-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+                <a href="#" class="btn-outline btn-outline-dark services-cta">
+                    Nossos Serviços
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="14">0</span>
+                        <span class="stat-plus">+</span>
+                        <span class="stat-label">anos de mercado</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="280">0</span>
+                        <span class="stat-plus">+</span>
+                        <span class="stat-label">projetos entregues</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="200">0</span>
+                        <span class="stat-plus">+</span>
+                        <span class="stat-label">profissionais</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="3">0</span>
+                        <span class="stat-plus"></span>
+                        <span class="stat-label">escritórios pelo mundo</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section" id="contato">
+            <div class="cta-bg-art">
+                <svg class="cta-bg-svg" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M400 50C250 50 150 150 150 250C150 350 250 400 400 350C550 300 700 200 650 100C620 30 500 50 400 50Z"
+                        fill="rgba(255,255,255,0.08)" />
+                    <path d="M500 0C350 20 200 100 250 250C300 400 500 400 600 300C700 200 700 -20 500 0Z"
+                        fill="rgba(255,255,255,0.05)" />
+                </svg>
+            </div>
+            <div class="container cta-content">
+                <div class="cta-text">
+                    <h2 class="cta-title">Fale com nossos especialistas hoje</h2>
+                    <p class="cta-desc">Vamos planejar e criar juntos a sua próxima solução digital.</p>
+                </div>
+                <a href="#" class="btn-white cta-btn">
+                    Entrar em contato
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-info">
+                    <h3 class="footer-brand">Ateliware - Ateliê de Software e IA</h3>
+                    <div class="footer-addresses">
+                        <p class="footer-address">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                <circle cx="12" cy="10" r="3" />
+                            </svg>
+                            Rua Pasteur, 463 – Batel, Curitiba - Paraná, Brasil
+                        </p>
+                        <p class="footer-address">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                <circle cx="12" cy="10" r="3" />
+                            </svg>
+                            Molenbergstraat 10 b25 - 2000 Antuérpia - Bélgica
+                        </p>
+                        <p class="footer-address">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                <circle cx="12" cy="10" r="3" />
+                            </svg>
+                            1100 US Highway 27 - Clermont, Flórida - Estados Unidos
+                        </p>
+                    </div>
+                </div>
+                <div class="footer-contacts">
+                    <a href="mailto:hello@ateliware.com" class="footer-email">hello@ateliware.com</a>
+                    <a href="mailto:comercial@ateliware.com" class="footer-email">comercial@ateliware.com</a>
+                </div>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <p class="footer-copy">2025 © Ateliware. Todos os direitos reservados.</p>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Política de Privacidade</a>
+                    <a href="#" class="footer-link">Trabalhe Conosco</a>
+                </div>
+                <span class="footer-credits">Criado por ateliware</span>
+            </div>
+        </div>
+        <div class="footer-watermark">ateliware</div>
+    </footer>
+
+    <!-- Floating AI Button -->
+    <button class="ai-fab" id="aiFab">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L9 7H3l4.5 5L5.5 22 12 18l6.5 4-2-10L21 7h-6L12 2z" fill="currentColor" />
+        </svg>
+        Pergunte à IA
+    </button>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
