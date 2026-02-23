@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Software House Sob Medida | Ateliware</title>
+    <title>Software House Sob Medida | Uzzy</title>
     <meta name="description"
-        content="Ateliware é uma software house focada em desenvolvimento de software personalizado e produtos digitais que transformam negócios.">
+        content="Uzzy é uma software house focada em desenvolvimento de software personalizado e produtos digitais que transformam negócios.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -37,12 +37,26 @@
     <header class="header" id="header">
         <div class="header-inner">
             <a href="#" class="logo">
-                <svg class="logo-icon" width="40" height="32" viewBox="0 0 40 32" fill="none">
-                    <path
-                        d="M20 0C15 0 11 3 9 7C7 3 3 0 0 2C3 5 5 10 5 16C5 22 3 27 0 30C3 32 7 29 9 25C11 29 15 32 20 32C25 32 29 29 31 25C33 29 37 32 40 30C37 27 35 22 35 16C35 10 37 5 40 2C37 0 33 3 31 7C29 3 25 0 20 0Z"
-                        fill="#E11D48" />
+                <svg class="logo-icon" width="36" height="36" viewBox="0 0 100 100" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <!-- Comet tail / flame streaks -->
+                    <path d="M28 72 C15 58, 8 40, 18 25 C22 19, 30 16, 35 18 C25 28, 22 42, 28 55 Z"
+                        fill="currentColor" />
+                    <path d="M35 65 C22 52, 18 35, 28 22 C32 17, 38 15, 42 18 C33 27, 30 40, 35 52 Z"
+                        fill="currentColor" />
+                    <!-- Energy spikes -->
+                    <path d="M20 30 L5 15 L18 22 Z" fill="currentColor" />
+                    <path d="M30 22 L22 5 L28 18 Z" fill="currentColor" />
+                    <path d="M40 18 L38 2 L42 15 Z" fill="currentColor" />
+                    <path d="M48 20 L55 5 L50 17 Z" fill="currentColor" />
+                    <path d="M15 40 L2 35 L14 38 Z" fill="currentColor" />
+                    <!-- Comet head -->
+                    <circle cx="52" cy="58" r="22" fill="currentColor" />
+                    <!-- Inner highlight -->
+                    <circle cx="52" cy="58" r="10" fill="var(--bg-primary, #0a0a0f)" />
+                    <circle cx="49" cy="55" r="4" fill="currentColor" opacity="0.3" />
                 </svg>
-                <span class="logo-text">ateliware</span>
+                <span class="logo-text">Uzzy</span>
             </a>
             <nav class="nav-main">
                 <a href="#servicos" class="nav-link">Serviços</a>
@@ -107,100 +121,81 @@
                             <path d="M5 12h14M12 5l7 7-7 7" />
                         </svg>
                     </a>
-                    <!-- Morph title — crossfades in during scroll -->
-                    <div class="morph-title" id="morphTitle">
-                        <p class="morph-label">
-                            <span class="bracket">&lt;</span> POR QUE NOS ESCOLHER <span class="bracket">/&gt;</span>
-                        </p>
-                        <h2 class="morph-heading">Motivos para usar nossos serviços<br>no seu negócio</h2>
+                </div>
+                <!-- Morph title — direct child of hero for full-viewport positioning -->
+                <div class="morph-title" id="morphTitle">
+                    <div class="morph-title-inner">
+                        <div class="morph-title-text">
+                            <p class="morph-label">
+                                <span class="bracket">&lt;</span> POR QUE NOS ESCOLHER <span
+                                    class="bracket">/&gt;</span>
+                            </p>
+                            <h2 class="morph-heading">Motivos para usar nossos serviços<br>no seu negócio</h2>
+                        </div>
+                        <span class="hero-cards-counter" id="heroCardsCounter">01 / 06</span>
+                    </div>
+                </div>
+
+                <!-- Cards panel — overlays on top of shader, hidden initially -->
+                <div class="hero-cards-panel" id="heroCardsPanel">
+                    <div class="hero-cards-carousel" id="heroCardsCarousel">
+                        <div class="case-card"
+                            style="background: linear-gradient(135deg, rgba(0,0,0,0.75), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600') center/cover">
+                            <span class="case-tag">TECNOLOGIA</span>
+                            <h3 class="case-title">Tecnologia sob medida para o seu negócio</h3>
+                            <p class="case-desc">Desenvolvemos soluções personalizadas que se adaptam às necessidades
+                                reais
+                                da sua empresa, sem depender de ferramentas genéricas</p>
+                            <span class="case-arrow">→</span>
+                        </div>
+                        <div class="case-card"
+                            style="background: linear-gradient(135deg, rgba(0,0,0,0.75), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600') center/cover">
+                            <span class="case-tag tag-ai">IA</span>
+                            <h3 class="case-title">Inteligência Artificial integrada aos processos</h3>
+                            <p class="case-desc">Automatize tarefas, preveja tendências e tome decisões mais
+                                inteligentes
+                                com IA aplicada diretamente ao seu fluxo de trabalho</p>
+                            <span class="case-arrow">→</span>
+                        </div>
+                        <div class="case-card"
+                            style="background: linear-gradient(135deg, rgba(0,0,0,0.75), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600') center/cover">
+                            <span class="case-tag">ESCALABILIDADE</span>
+                            <h3 class="case-title">Infraestrutura pronta para crescer com você</h3>
+                            <p class="case-desc">Arquiteturas modernas, escaláveis e seguras que acompanham o
+                                crescimento do
+                                seu negócio sem gargalos</p>
+                            <span class="case-arrow">→</span>
+                        </div>
+                        <div class="case-card"
+                            style="background: linear-gradient(135deg, rgba(0,0,0,0.75), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=600') center/cover">
+                            <span class="case-tag">AGILIDADE</span>
+                            <h3 class="case-title">Entregas rápidas com metodologia ágil</h3>
+                            <p class="case-desc">Sprints curtos, entregas contínuas e comunicação transparente para que
+                                você
+                                veja resultados desde o primeiro mês</p>
+                            <span class="case-arrow">→</span>
+                        </div>
+                        <div class="case-card"
+                            style="background: linear-gradient(135deg, rgba(0,0,0,0.75), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600') center/cover">
+                            <span class="case-tag">SUPORTE</span>
+                            <h3 class="case-title">Time dedicado ao seu projeto</h3>
+                            <p class="case-desc">Equipe multidisciplinar com desenvolvedores, designers e especialistas
+                                em
+                                IA trabalhando exclusivamente para o seu sucesso</p>
+                            <span class="case-arrow">→</span>
+                        </div>
+                        <div class="case-card"
+                            style="background: linear-gradient(135deg, rgba(0,0,0,0.75), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600') center/cover">
+                            <span class="case-tag">RESULTADOS</span>
+                            <h3 class="case-title">Resultados mensuráveis e ROI comprovado</h3>
+                            <p class="case-desc">Mais de R$ 2 bilhões processados por nossos clientes — cada projeto é
+                                acompanhado por métricas claras de impacto no negócio</p>
+                            <span class="case-arrow">→</span>
+                        </div>
                     </div>
                 </div>
             </section>
         </div>
-
-        <!-- Motivos Section — slides over the hero -->
-        <section class="cases-section motivos-reveal" id="cases">
-            <div class="container">
-                <div class="section-label motivos-header-hidden">
-                    <span class="bracket">&lt;</span> POR QUE NOS ESCOLHER <span class="bracket">/&gt;</span>
-                </div>
-                <h2 class="section-title motivos-header-hidden">Motivos para usar nossos serviços<br>no seu negócio</h2>
-            </div>
-
-            <!-- Motivos Carousel -->
-            <div class="cases-carousel-wrapper">
-                <div class="cases-carousel" id="casesCarousel">
-                    <div class="case-card"
-                        style="background: linear-gradient(135deg, rgba(0,0,0,0.75), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600') center/cover">
-                        <span class="case-tag">TECNOLOGIA</span>
-                        <h3 class="case-title">Tecnologia sob medida para o seu negócio</h3>
-                        <p class="case-desc">Desenvolvemos soluções personalizadas que se adaptam às necessidades reais
-                            da sua empresa, sem depender de ferramentas genéricas</p>
-                        <span class="case-arrow">→</span>
-                    </div>
-                    <div class="case-card"
-                        style="background: linear-gradient(135deg, rgba(0,0,0,0.75), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600') center/cover">
-                        <span class="case-tag tag-ai">IA</span>
-                        <h3 class="case-title">Inteligência Artificial integrada aos processos</h3>
-                        <p class="case-desc">Automatize tarefas, preveja tendências e tome decisões mais inteligentes
-                            com IA aplicada diretamente ao seu fluxo de trabalho</p>
-                        <span class="case-arrow">→</span>
-                    </div>
-                    <div class="case-card"
-                        style="background: linear-gradient(135deg, rgba(0,0,0,0.75), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600') center/cover">
-                        <span class="case-tag">ESCALABILIDADE</span>
-                        <h3 class="case-title">Infraestrutura pronta para crescer com você</h3>
-                        <p class="case-desc">Arquiteturas modernas, escaláveis e seguras que acompanham o crescimento do
-                            seu negócio sem gargalos</p>
-                        <span class="case-arrow">→</span>
-                    </div>
-                    <div class="case-card"
-                        style="background: linear-gradient(135deg, rgba(0,0,0,0.75), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=600') center/cover">
-                        <span class="case-tag">AGILIDADE</span>
-                        <h3 class="case-title">Entregas rápidas com metodologia ágil</h3>
-                        <p class="case-desc">Sprints curtos, entregas contínuas e comunicação transparente para que você
-                            veja resultados desde o primeiro mês</p>
-                        <span class="case-arrow">→</span>
-                    </div>
-                    <div class="case-card"
-                        style="background: linear-gradient(135deg, rgba(0,0,0,0.75), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600') center/cover">
-                        <span class="case-tag">SUPORTE</span>
-                        <h3 class="case-title">Time dedicado ao seu projeto</h3>
-                        <p class="case-desc">Equipe multidisciplinar com desenvolvedores, designers e especialistas em
-                            IA trabalhando exclusivamente para o seu sucesso</p>
-                        <span class="case-arrow">→</span>
-                    </div>
-                    <div class="case-card"
-                        style="background: linear-gradient(135deg, rgba(0,0,0,0.75), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600') center/cover">
-                        <span class="case-tag">RESULTADOS</span>
-                        <h3 class="case-title">Resultados mensuráveis e ROI comprovado</h3>
-                        <p class="case-desc">Mais de R$ 2 bilhões processados por nossos clientes — cada projeto é
-                            acompanhado por métricas claras de impacto no negócio</p>
-                        <span class="case-arrow">→</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Client Logos -->
-            <div class="container">
-                <div class="client-logos">
-                    <div class="logo-item"><span class="client-text votorantim">VOTORANTIM</span></div>
-                    <div class="logo-item"><span class="client-text trio">◇Trio</span></div>
-                    <div class="logo-item"><span class="client-text foodtosave">Food to Save</span></div>
-                    <div class="logo-item"><span class="client-text pipefy">pipefy</span></div>
-                    <div class="logo-item"><span class="client-text uninter">UNINTER</span></div>
-                    <div class="logo-item"><span class="client-text lucy">lucy</span></div>
-                    <div class="logo-item"><span class="client-text bmg">bmg</span></div>
-                    <div class="logo-item"><span class="client-text aviagen">Aviagen</span></div>
-                    <div class="logo-item"><span class="client-text matrixcargo">matrixcargo</span></div>
-                    <div class="logo-item"><span class="client-text zeron">ZERON</span></div>
-                    <div class="logo-item"><span class="client-text timeseer">timeseer.AI</span></div>
-                    <div class="logo-item"><span class="client-text prismos">prismos</span></div>
-                    <div class="logo-item"><span class="client-text agro1">agro1</span></div>
-                    <div class="logo-item"><span class="client-text sicoob">SICOOB</span></div>
-                </div>
-            </div>
-        </section>
 
         <!-- Services Section -->
         <section class="services-section" id="servicos">
@@ -452,7 +447,7 @@
         <div class="container">
             <div class="footer-top">
                 <div class="footer-info">
-                    <h3 class="footer-brand">Ateliware - Ateliê de Software e IA</h3>
+                    <h3 class="footer-brand">Uzzy - Ateliê de Software e IA</h3>
                     <div class="footer-addresses">
                         <p class="footer-address">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -481,21 +476,21 @@
                     </div>
                 </div>
                 <div class="footer-contacts">
-                    <a href="mailto:hello@ateliware.com" class="footer-email">hello@ateliware.com</a>
-                    <a href="mailto:comercial@ateliware.com" class="footer-email">comercial@ateliware.com</a>
+                    <a href="mailto:hello@uzzy.dev" class="footer-email">hello@uzzy.dev</a>
+                    <a href="mailto:comercial@uzzy.dev" class="footer-email">comercial@uzzy.dev</a>
                 </div>
             </div>
             <div class="footer-divider"></div>
             <div class="footer-bottom">
-                <p class="footer-copy">2025 © Ateliware. Todos os direitos reservados.</p>
+                <p class="footer-copy">2025 © Uzzy. Todos os direitos reservados.</p>
                 <div class="footer-links">
                     <a href="#" class="footer-link">Política de Privacidade</a>
                     <a href="#" class="footer-link">Trabalhe Conosco</a>
                 </div>
-                <span class="footer-credits">Criado por ateliware</span>
+                <span class="footer-credits">Criado por Uzzy</span>
             </div>
         </div>
-        <div class="footer-watermark">ateliware</div>
+        <div class="footer-watermark">Uzzy</div>
     </footer>
 
     <!-- Floating AI Button -->

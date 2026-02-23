@@ -1,5 +1,5 @@
 /* ============================================
-   Ateliware Clone - CSS Styles
+   Uzzy Tecnologia - CSS Styles
    ============================================ */
 
 /* === Reset & Base === */
@@ -490,8 +490,8 @@ img {
 /* === Cinematic Scroll Stage === */
 .scroll-stage {
   position: relative;
-  height: 200vh;
-  /* Provides scroll runway for the transition */
+  height: 600vh;
+  /* Provides scroll runway: hero fadeout + morph title + cards cycling */
 }
 
 .scroll-stage .hero {
@@ -501,17 +501,34 @@ img {
   will-change: transform;
 }
 
-/* Morph title — starts hidden, crossfades in during scroll */
+/* Morph title — starts hidden, animates from center to top-left */
 .morph-title {
   position: absolute;
   inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
+  z-index: 5;
+  /* Above cards panel (4) */
   pointer-events: none;
-  will-change: opacity;
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+.morph-title-inner {
+  position: absolute;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  /* Start centered — JS will interpolate position */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: max-content;
+  max-width: 90vw;
+  transition: none;
+}
+
+.morph-title-text {
+  flex-shrink: 0;
 }
 
 .morph-label {
@@ -534,18 +551,58 @@ img {
   line-height: 1.25;
   color: var(--white);
   text-align: center;
+  transform-origin: top left;
+  will-change: transform;
 }
 
-/* Motivos section — slides over hero */
-.motivos-reveal {
-  position: relative;
-  z-index: 5;
-  background: var(--gray-50);
+.hero-cards-counter {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.15em;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  align-self: flex-end;
+  padding-bottom: 0.25rem;
 }
 
-/* Hide duplicate header in Motivos (morph-title replaces it) */
-.motivos-header-hidden {
+/* === Hero Cards Panel — overlays inside hero === */
+.hero-cards-panel {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2rem 2rem 3rem;
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity;
+}
+
+.hero-cards-carousel {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+  padding: 0 2rem 1rem;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.hero-cards-carousel::-webkit-scrollbar {
   display: none;
+}
+
+.hero-cards-carousel .case-card {
+  flex-shrink: 0;
+  width: 380px;
+  min-height: 300px;
 }
 
 /* Animated elements — GPU compositing hints */

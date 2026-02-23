@@ -1,5 +1,5 @@
 /* ============================================
-   Ateliware Clone - JavaScript
+   Uzzy Tecnologia - JavaScript
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -218,28 +218,48 @@ void main(void) {
       }
     }
   }
+  // === Shared Helpers (used by scroll transition + card reveals) ===
+  const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+  const clamp = (val, min, max) => Math.min(Math.max(val, min), max);
+  const mapRange = (value, inMin, inMax, outMin, outMax) => {
+    const t = clamp((value - inMin) / (inMax - inMin), 0, 1);
+    return outMin + (outMax - outMin) * t;
+  };
+
   // === Cinematic Scroll Transition ===
   const scrollStage = document.getElementById('scrollStage');
-  const heroTitle = document.getElementById('heroTitle');
-  const heroSubtitle = document.getElementById('heroSubtitle');
-  const heroCta = document.getElementById('heroCta');
+  const heroContentEl = document.getElementById('heroContent');
   const morphTitle = document.getElementById('morphTitle');
+  const morphTitleInner = morphTitle ? morphTitle.querySelector('.morph-title-inner') : null;
+  const morphHeading = morphTitle ? morphTitle.querySelector('.morph-heading') : null;
+  const morphLabel = morphTitle ? morphTitle.querySelector('.morph-label') : null;
+  const heroCardsPanel = document.getElementById('heroCardsPanel');
+  const heroCardsCarousel = document.getElementById('heroCardsCarousel');
+  const heroCardsCounter = document.getElementById('heroCardsCounter');
+  const heroCards = heroCardsPanel ? heroCardsPanel.querySelectorAll('.case-card') : [];
 
-  if (scrollStage && heroTitle && morphTitle) {
+  if (scrollStage && heroContentEl && morphTitle && morphTitleInner && heroCardsPanel) {
     let ticking = false;
+    let lastActiveCard = -1;
+    const totalCards = heroCards.length;
 
-    // Easing function for smoother transitions
-    const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
-    const easeInOutQuad = (t) => t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+    // After entrance animations complete, strip them to prevent fill-mode conflicts
+    setTimeout(() => {
+      heroContentEl.querySelectorAll('.hero-subtitle, .hero-title, .hero-cta').forEach(el => {
+        el.style.animation = 'none';
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      });
+    }, 1500);
 
-    // Clamp helper
-    const clamp = (val, min, max) => Math.min(Math.max(val, min), max);
-
-    // Map a value from one range to another
-    const mapRange = (value, inMin, inMax, outMin, outMax) => {
-      const t = clamp((value - inMin) / (inMax - inMin), 0, 1);
-      return outMin + (outMax - outMin) * t;
-    };
+    // Set initial card styles
+    heroCards.forEach((card, i) => {
+      card.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.5s ease';
+      if (i > 0) {
+        card.style.opacity = '0.35';
+        card.style.transform = 'scale(0.92)';
+      }
+    });
 
     function updateScrollTransition() {
       const stageRect = scrollStage.getBoundingClientRect();
@@ -247,32 +267,107 @@ void main(void) {
       const scrolled = -stageRect.top;
       const progress = clamp(scrolled / stageHeight, 0, 1);
 
-      // --- Hero Title: scale down + fade out fast (gone by 0.4) ---
-      const titleScale = mapRange(progress, 0, 0.4, 1, 0.5);
-      const titleTranslateY = mapRange(progress, 0, 0.4, 0, -100);
-      const titleOpacity = mapRange(progress, 0.15, 0.4, 1, 0);
+      // ─── PHASE 1 (0 → 0.10): Hero content fades out ───
+      const contentOpacity = mapRange(progress, 0.02, 0.10, 1, 0);
+      const contentScale = mapRange(progress, 0, 0.10, 1, 0.85);
+      const contentTranslateY = mapRange(progress, 0, 0.10, 0, -60);
+      heroContentEl.style.opacity = contentOpacity;
+      heroContentEl.style.transform = `scale(${contentScale}) translateY(${contentTranslateY}px)`;
+      heroContentEl.style.visibility = contentOpacity <= 0 ? 'hidden' : 'visible';
 
-      heroTitle.style.transform = `scale(${titleScale}) translateY(${titleTranslateY}px)`;
-      heroTitle.style.opacity = titleOpacity;
-
-      // --- Subtitle + CTA: fade out immediately ---
-      const subtitleOpacity = mapRange(progress, 0, 0.15, 1, 0);
-      if (heroSubtitle) heroSubtitle.style.opacity = subtitleOpacity;
-      if (heroCta) {
-        heroCta.style.opacity = subtitleOpacity;
-        heroCta.style.transform = `translateY(${mapRange(progress, 0, 0.15, 0, 40)}px)`;
+      // ─── PHASE 2 (0.10 → 0.22): Morph title fades in centered ───
+      const morphFadeIn = easeOutCubic(mapRange(progress, 0.10, 0.20, 0, 1));
+      morphTitle.style.opacity = progress >= 0.10 ? Math.max(morphFadeIn, mapRange(progress, 0.20, 1, 1, 1)) : morphFadeIn;
+      // Keep morph title visible from Phase 2 onward (never fades out)
+      if (progress >= 0.10) {
+        morphTitle.style.opacity = Math.min(1, morphFadeIn + mapRange(progress, 0.20, 0.22, 0, 1));
       }
 
-      // --- Morph Title: appear only AFTER hero is fully gone (0.55→0.85) ---
-      const morphOpacity = progress < 0.55
-        ? 0
-        : easeOutCubic(mapRange(progress, 0.55, 0.85, 0, 1));
-      const morphTranslateY = mapRange(progress, 0.55, 0.85, 60, -10);
-      morphTitle.style.opacity = morphOpacity;
-      morphTitle.style.transform = `translateY(${morphTranslateY}px)`;
+      // ─── PHASE 2→3 (0.20 → 0.35): Title morphs from center to top-left ───
+      const morphProgress = easeOutCubic(mapRange(progress, 0.20, 0.35, 0, 1));
 
-      // --- Shader darkening overlay ---
-      const dimOpacity = mapRange(progress, 0.2, 0.9, 0, 0.6);
+      // Position interpolation: center → top-left
+      // Target position: top: ~15%, left: ~4% (padded from edge)
+      const topStart = 50;
+      const topEnd = 18;
+      const leftStart = 50;
+      const leftEnd = 4;
+      const currentTop = topStart + (topEnd - topStart) * morphProgress;
+      const currentLeft = leftStart + (leftEnd - leftStart) * morphProgress;
+
+      // Transform: from translate(-50%, -50%) to translate(0, 0)
+      const translateXPct = -50 * (1 - morphProgress);
+      const translateYPct = -50 * (1 - morphProgress);
+
+      // Scale: heading gets smaller when moving to top-left
+      const headingScale = 1 - 0.3 * morphProgress; // 1 → 0.7
+
+      morphTitleInner.style.top = `${currentTop}%`;
+      morphTitleInner.style.left = `${currentLeft}%`;
+      morphTitleInner.style.transform = `translate(${translateXPct}%, ${translateYPct}%)`;
+
+      // Scale the heading text
+      if (morphHeading) {
+        morphHeading.style.transform = `scale(${headingScale})`;
+        morphHeading.style.textAlign = morphProgress > 0.5 ? 'left' : 'center';
+      }
+
+      // Label also aligns left
+      if (morphLabel) {
+        morphLabel.style.textAlign = morphProgress > 0.5 ? 'left' : 'center';
+      }
+
+      // Counter fades in during morph
+      if (heroCardsCounter) {
+        heroCardsCounter.style.opacity = mapRange(progress, 0.28, 0.35, 0, 1);
+      }
+
+      // ─── PHASE 3 (0.30 → 0.40): Cards panel fades in from below ───
+      const panelOpacity = easeOutCubic(mapRange(progress, 0.30, 0.40, 0, 1));
+      const panelTranslateY = mapRange(progress, 0.30, 0.40, 40, 0);
+      heroCardsPanel.style.opacity = panelOpacity;
+      heroCardsPanel.style.transform = `translateY(${panelTranslateY}px)`;
+      heroCardsPanel.style.pointerEvents = panelOpacity > 0.5 ? 'auto' : 'none';
+
+      // ─── PHASE 4 (0.40 → 1.0): Cards cycle one by one ───
+      if (progress >= 0.40 && totalCards > 0) {
+        const cardProgress = mapRange(progress, 0.40, 0.95, 0, 1);
+        const activeIndex = Math.min(
+          Math.floor(cardProgress * totalCards),
+          totalCards - 1
+        );
+
+        if (activeIndex !== lastActiveCard) {
+          lastActiveCard = activeIndex;
+
+          // Update counter
+          if (heroCardsCounter) {
+            heroCardsCounter.textContent = `${String(activeIndex + 1).padStart(2, '0')} / ${String(totalCards).padStart(2, '0')}`;
+          }
+
+          // Auto-scroll carousel to center active card
+          const activeCard = heroCards[activeIndex];
+          const cardLeft = activeCard.offsetLeft;
+          const cardWidth = activeCard.offsetWidth;
+          const wrapperWidth = heroCardsCarousel.offsetWidth;
+          const scrollTarget = cardLeft - (wrapperWidth / 2) + (cardWidth / 2);
+          heroCardsCarousel.scrollTo({ left: scrollTarget, behavior: 'smooth' });
+
+          // Highlight active, dim others
+          heroCards.forEach((card, i) => {
+            if (i === activeIndex) {
+              card.style.opacity = '1';
+              card.style.transform = 'scale(1)';
+            } else {
+              card.style.opacity = '0.35';
+              card.style.transform = 'scale(0.92)';
+            }
+          });
+        }
+      }
+
+      // ─── Shader darkening (continuous) ───
+      const dimOpacity = mapRange(progress, 0.05, 0.35, 0, 0.6);
       const heroSection = document.getElementById('heroSection');
       if (heroSection) {
         heroSection.style.setProperty('--dim-opacity', dimOpacity);
@@ -290,49 +385,6 @@ void main(void) {
 
     // Initial call
     updateScrollTransition();
-  }
-
-  // === Motivos Cards Progressive Reveal ===
-  const motivosCards = document.querySelectorAll('.motivos-reveal .case-card');
-  if (motivosCards.length > 0) {
-    // Set initial state
-    motivosCards.forEach(card => {
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(40px)';
-      card.style.transition = 'none';
-    });
-
-    let cardsTicking = false;
-
-    function updateCardReveals() {
-      const viewportBottom = window.innerHeight;
-
-      motivosCards.forEach((card, index) => {
-        const rect = card.getBoundingClientRect();
-        // Card enters viewport when its top is less than viewport bottom
-        const cardProgress = clamp((viewportBottom - rect.top) / (viewportBottom * 0.4), 0, 1);
-        const eased = easeOutCubic(cardProgress);
-
-        // Stagger slightly per card
-        const staggerDelay = index * 0.05;
-        const adjustedProgress = clamp(eased - staggerDelay, 0, 1);
-
-        card.style.opacity = adjustedProgress;
-        card.style.transform = `translateY(${40 * (1 - adjustedProgress)}px)`;
-      });
-
-      // Easing for cards
-      function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
-
-      cardsTicking = false;
-    }
-
-    window.addEventListener('scroll', () => {
-      if (!cardsTicking) {
-        requestAnimationFrame(updateCardReveals);
-        cardsTicking = true;
-      }
-    }, { passive: true });
   }
 
   // === Services Tabs ===
@@ -451,7 +503,7 @@ void main(void) {
       aiFab.style.transform = 'scale(0.95)';
       setTimeout(() => {
         aiFab.style.transform = '';
-        alert('🤖 IA Ateliware: Como posso ajudar você hoje?');
+        alert('🤖 IA Uzzy: Como posso ajudar você hoje?');
       }, 150);
     });
   }
