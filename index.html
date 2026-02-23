@@ -25,6 +25,7 @@
             },
         }
     </script>
+    <link rel="icon" type="image/png" href="Logo.png">
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -37,25 +38,7 @@
     <header class="header" id="header">
         <div class="header-inner">
             <a href="#" class="logo">
-                <svg class="logo-icon" width="36" height="36" viewBox="0 0 100 100" fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <!-- Comet tail / flame streaks -->
-                    <path d="M28 72 C15 58, 8 40, 18 25 C22 19, 30 16, 35 18 C25 28, 22 42, 28 55 Z"
-                        fill="currentColor" />
-                    <path d="M35 65 C22 52, 18 35, 28 22 C32 17, 38 15, 42 18 C33 27, 30 40, 35 52 Z"
-                        fill="currentColor" />
-                    <!-- Energy spikes -->
-                    <path d="M20 30 L5 15 L18 22 Z" fill="currentColor" />
-                    <path d="M30 22 L22 5 L28 18 Z" fill="currentColor" />
-                    <path d="M40 18 L38 2 L42 15 Z" fill="currentColor" />
-                    <path d="M48 20 L55 5 L50 17 Z" fill="currentColor" />
-                    <path d="M15 40 L2 35 L14 38 Z" fill="currentColor" />
-                    <!-- Comet head -->
-                    <circle cx="52" cy="58" r="22" fill="currentColor" />
-                    <!-- Inner highlight -->
-                    <circle cx="52" cy="58" r="10" fill="var(--bg-primary, #0a0a0f)" />
-                    <circle cx="49" cy="55" r="4" fill="currentColor" opacity="0.3" />
-                </svg>
+                <img class="logo-icon" src="Logo.png" alt="Uzzy Logo" width="52" height="52">
                 <span class="logo-text">Uzzy</span>
             </a>
             <nav class="nav-main">
@@ -74,7 +57,8 @@
                             d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
                     </svg>
                 </button>
-                <a href="#contato" class="btn-primary btn-contact-header">
+                <a href="https://wa.me/5567991174434?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Uzzy%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es."
+                    target="_blank" rel="noopener noreferrer" class="btn-primary btn-contact-header">
                     Entrar em contato
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M5 12h14M12 5l7 7-7 7" />
@@ -393,24 +377,19 @@
             <div class="container">
                 <div class="stats-grid">
                     <div class="stat-item">
-                        <span class="stat-number" data-target="14">0</span>
+                        <span class="stat-number" data-target="2">0</span>
                         <span class="stat-plus">+</span>
                         <span class="stat-label">anos de mercado</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number" data-target="280">0</span>
+                        <span class="stat-number" data-target="60">0</span>
                         <span class="stat-plus">+</span>
                         <span class="stat-label">projetos entregues</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number" data-target="200">0</span>
+                        <span class="stat-number" data-target="5">0</span>
                         <span class="stat-plus">+</span>
                         <span class="stat-label">profissionais</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" data-target="3">0</span>
-                        <span class="stat-plus"></span>
-                        <span class="stat-label">escritórios pelo mundo</span>
                     </div>
                 </div>
             </div>
@@ -445,40 +424,18 @@
     <!-- Footer -->
     <footer class="footer" id="footer">
         <div class="container">
-            <div class="footer-top">
-                <div class="footer-info">
-                    <h3 class="footer-brand">Uzzy - Ateliê de Software e IA</h3>
-                    <div class="footer-addresses">
-                        <p class="footer-address">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                                <circle cx="12" cy="10" r="3" />
-                            </svg>
-                            Rua Pasteur, 463 – Batel, Curitiba - Paraná, Brasil
-                        </p>
-                        <p class="footer-address">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                                <circle cx="12" cy="10" r="3" />
-                            </svg>
-                            Molenbergstraat 10 b25 - 2000 Antuérpia - Bélgica
-                        </p>
-                        <p class="footer-address">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                                <circle cx="12" cy="10" r="3" />
-                            </svg>
-                            1100 US Highway 27 - Clermont, Flórida - Estados Unidos
-                        </p>
-                    </div>
-                </div>
-                <div class="footer-contacts">
-                    <a href="mailto:hello@uzzy.dev" class="footer-email">hello@uzzy.dev</a>
-                    <a href="mailto:comercial@uzzy.dev" class="footer-email">comercial@uzzy.dev</a>
-                </div>
+            <div class="footer-hero">
+                <h2 class="footer-headline">Vamos Construir Soluções<br>Digitais Inteligentes</h2>
+                <p class="footer-description">A Uzzy é um Ateliê de Software e IA focado na criação de sites de alta
+                    performance e sistemas de automação inteligente para empresas em crescimento.</p>
+                <a href="mailto:comercial@uzzy.dev" class="footer-email-cta">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                        <polyline points="22,6 12,13 2,6" />
+                    </svg>
+                    comercial@uzzy.dev
+                </a>
             </div>
             <div class="footer-divider"></div>
             <div class="footer-bottom">
