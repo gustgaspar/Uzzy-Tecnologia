@@ -119,20 +119,21 @@ img {
 .logo {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 1.35rem;
+  gap: 0.6rem;
+  font-size: 1.8rem;
   font-weight: 700;
   color: var(--pink);
   flex-shrink: 0;
 }
 
 .logo-icon {
-  width: 52px;
-  height: 52px;
+  width: 68px;
+  height: 68px;
   object-fit: contain;
   background: none;
   border: none;
   border-radius: 0;
+  margin: -10px 0;
 }
 
 .logo-text {
@@ -495,8 +496,8 @@ img {
 /* === Cinematic Scroll Stage === */
 .scroll-stage {
   position: relative;
-  height: 300vh;
-  /* Provides scroll runway: hero fadeout + morph title + cards reveal */
+  height: 500vh;
+  /* Extended: hero fadeout + morph title + cards one-by-one reveal */
 }
 
 .scroll-stage .hero {
@@ -580,7 +581,7 @@ img {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 2rem 2rem 3rem;
+  padding: 0 0 2.5rem;
   opacity: 0;
   pointer-events: none;
   will-change: opacity, transform;
@@ -612,17 +613,21 @@ img {
 .hero-cards-carousel .case-card {
   flex-shrink: 0;
   width: 230px;
-  min-height: 480px;
+  min-height: 420px;
   border-radius: 16px;
-  transform: translateY(60px) scale(0.95);
-  opacity: 0.7;
-  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    opacity 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  /* --card-reveal (0→1) set per-card by JS; drives opacity + slide+tilt entrance */
+  opacity: calc(var(--card-reveal, 0) * 0.7);
+  transform:
+    translateY(calc(50px + 50px * (1 - var(--card-reveal, 0)))) translateX(calc(50px * (1 - var(--card-reveal, 0))));
 }
 
 .hero-cards-carousel .case-card.card-center {
-  transform: translateY(0) scale(1);
-  opacity: 1;
+  /* Center card: fully opaque when revealed, elevated (no Y tilt) */
+  opacity: var(--card-reveal, 0);
+  transform:
+    translateY(calc(50px * (1 - var(--card-reveal, 0)))) translateX(calc(50px * (1 - var(--card-reveal, 0))));
 }
 
 /* Carousel Navigation Arrows */
@@ -1116,7 +1121,7 @@ img {
 
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   text-align: center;
 }
@@ -1126,6 +1131,13 @@ img {
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+}
+
+.stat-val {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
 }
 
 .stat-number {
@@ -1303,7 +1315,7 @@ img {
 }
 
 .footer-watermark {
-  font-size: clamp(6rem, 15vw, 14rem);
+  font-size: clamp(3rem, 11vw, 9rem);
   font-weight: 900;
   color: rgba(255, 255, 255, 0.06);
   text-align: center;
@@ -1312,38 +1324,9 @@ img {
   letter-spacing: -0.03em;
   user-select: none;
   pointer-events: none;
+  white-space: nowrap;
 }
 
-/* === AI FAB === */
-.ai-fab {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.25rem;
-  background: var(--white);
-  color: var(--gray-800);
-  font-size: 0.85rem;
-  font-weight: 600;
-  border-radius: var(--radius);
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
-  transition: all var(--transition);
-  z-index: 100;
-  font-family: var(--font);
-}
-
-.ai-fab:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
-}
-
-.ai-fab svg {
-  color: var(--pink);
-}
 
 /* === Scroll Animations === */
 .reveal {

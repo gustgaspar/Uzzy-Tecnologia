@@ -272,6 +272,11 @@ void main(void) {
       const scrolled = -stageRect.top;
       const progress = clamp(scrolled / stageHeight, 0, 1);
 
+      // ── Navbar-aware final top position (responsive) ──
+      const navbarEl = document.getElementById('header');
+      const navHeight = navbarEl ? navbarEl.offsetHeight + navbarEl.offsetTop + 24 : 80;
+      const finalTopPct = (navHeight / window.innerHeight) * 100;
+
       // PHASE 1: Hero content fades out
       target.contentOpacity = mapRange(progress, 0.02, 0.15, 1, 0);
       target.contentScale = mapRange(progress, 0, 0.15, 1, 0.85);
@@ -283,9 +288,9 @@ void main(void) {
         ? Math.min(1, morphFadeIn + mapRange(progress, 0.30, 0.35, 0, 1))
         : morphFadeIn;
 
-      // PHASE 2→3: Title morphs from center to top-left
+      // PHASE 2→3: Title morphs from center to just below navbar
       const morphProgress = easeOutCubic(mapRange(progress, 0.30, 0.55, 0, 1));
-      target.innerTop = 50 + (18 - 50) * morphProgress;
+      target.innerTop = 50 + (finalTopPct - 50) * morphProgress;
       target.innerLeft = 50 + (4 - 50) * morphProgress;
       target.innerTx = -50 * (1 - morphProgress);
       target.innerTy = -50 * (1 - morphProgress);
@@ -295,8 +300,8 @@ void main(void) {
       target.counterOpacity = mapRange(progress, 0.45, 0.55, 0, 1);
 
       // PHASE 3: Cards panel fades in
-      target.panelOpacity = easeOutCubic(mapRange(progress, 0.50, 0.65, 0, 1));
-      target.panelTranslateY = mapRange(progress, 0.50, 0.65, 40, 0);
+      target.panelOpacity = easeOutCubic(mapRange(progress, 0.50, 0.63, 0, 1));
+      target.panelTranslateY = mapRange(progress, 0.50, 0.63, 40, 0);
 
       // Shader darkening
       target.dimOpacity = mapRange(progress, 0.05, 0.55, 0, 0.6);
@@ -363,18 +368,33 @@ void main(void) {
       // Detect which card is closest to center and highlight it
       function updateCenterCard() {
         const wrapperRect = heroCardsCarousel.getBoundingClientRect();
-        const wrapperCenter = wrapperRect.left + wrapperRect.width / 2;
+        // Focus point is fixed near the left edge to always highlight the first visible card
+        const focusPoint = wrapperRect.left + 180;
         let closestIdx = 0;
         let closestDist = Infinity;
 
         heroCards.forEach((card, i) => {
           const cardRect = card.getBoundingClientRect();
-          const cardCenter = cardRect.left + cardRect.width / 2;
-          const dist = Math.abs(cardCenter - wrapperCenter);
+          // Use the left edge of the card for distance to focus point
+          const dist = Math.abs(cardRect.left - focusPoint);
           if (dist < closestDist) {
             closestDist = dist;
             closestIdx = i;
           }
+
+          // Card Horizontal Reveal Logic (fades in as it enters from the right)
+          // Adjust threshold so they slowly appear when dragged left
+          const revealStart = wrapperRect.right - 20;
+          const revealEnd = wrapperRect.right - 250;
+
+          let revealVal = 1;
+          if (cardRect.left > revealStart) {
+            revealVal = 0;
+          } else if (cardRect.left > revealEnd) {
+            revealVal = (revealStart - cardRect.left) / (revealStart - revealEnd);
+          }
+
+          card.style.setProperty('--card-reveal', revealVal.toString());
         });
 
         heroCards.forEach((card, i) => {
@@ -553,16 +573,5 @@ void main(void) {
     });
   });
 
-  // === AI FAB ===
-  const aiFab = document.getElementById('aiFab');
-  if (aiFab) {
-    aiFab.addEventListener('click', () => {
-      aiFab.style.transform = 'scale(0.95)';
-      setTimeout(() => {
-        aiFab.style.transform = '';
-        alert('🤖 IA Uzzy: Como posso ajudar você hoje?');
-      }, 150);
-    });
-  }
 
 });
