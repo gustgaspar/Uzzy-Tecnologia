@@ -239,8 +239,6 @@ void main(void) {
   const heroCards = heroCardsPanel ? heroCardsPanel.querySelectorAll('.case-card') : [];
 
   if (scrollStage && heroContentEl && morphTitle && morphTitleInner && heroCardsPanel) {
-    let ticking = false;
-    let lastActiveCard = -1;
     const totalCards = heroCards.length;
 
     // After entrance animations complete, strip them to prevent fill-mode conflicts
@@ -252,139 +250,198 @@ void main(void) {
       });
     }, 1500);
 
-    // Set initial card styles
-    heroCards.forEach((card, i) => {
-      card.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.5s ease';
-      if (i > 0) {
-        card.style.opacity = '0.35';
-        card.style.transform = 'scale(0.92)';
-      }
-    });
+    // ─── Lerp-based smooth scroll animation ───
+    const lerp = (current, target, factor) => current + (target - current) * factor;
+    const LERP_FACTOR = 0.08;
 
-    function updateScrollTransition() {
+    let cur = {
+      contentOpacity: 1, contentScale: 1, contentTranslateY: 0,
+      morphOpacity: 0,
+      innerTop: 50, innerLeft: 50, innerTx: -50, innerTy: -50,
+      headingScale: 1,
+      counterOpacity: 0,
+      panelOpacity: 0, panelTranslateY: 40,
+      dimOpacity: 0
+    };
+
+    let target = { ...cur };
+
+    function computeTargets() {
       const stageRect = scrollStage.getBoundingClientRect();
       const stageHeight = scrollStage.offsetHeight - window.innerHeight;
       const scrolled = -stageRect.top;
       const progress = clamp(scrolled / stageHeight, 0, 1);
 
-      // ─── PHASE 1 (0 → 0.10): Hero content fades out ───
-      const contentOpacity = mapRange(progress, 0.02, 0.10, 1, 0);
-      const contentScale = mapRange(progress, 0, 0.10, 1, 0.85);
-      const contentTranslateY = mapRange(progress, 0, 0.10, 0, -60);
-      heroContentEl.style.opacity = contentOpacity;
-      heroContentEl.style.transform = `scale(${contentScale}) translateY(${contentTranslateY}px)`;
-      heroContentEl.style.visibility = contentOpacity <= 0 ? 'hidden' : 'visible';
+      // PHASE 1: Hero content fades out
+      target.contentOpacity = mapRange(progress, 0.02, 0.15, 1, 0);
+      target.contentScale = mapRange(progress, 0, 0.15, 1, 0.85);
+      target.contentTranslateY = mapRange(progress, 0, 0.15, 0, -60);
 
-      // ─── PHASE 2 (0.10 → 0.22): Morph title fades in centered ───
-      const morphFadeIn = easeOutCubic(mapRange(progress, 0.10, 0.20, 0, 1));
-      morphTitle.style.opacity = progress >= 0.10 ? Math.max(morphFadeIn, mapRange(progress, 0.20, 1, 1, 1)) : morphFadeIn;
-      // Keep morph title visible from Phase 2 onward (never fades out)
-      if (progress >= 0.10) {
-        morphTitle.style.opacity = Math.min(1, morphFadeIn + mapRange(progress, 0.20, 0.22, 0, 1));
-      }
+      // PHASE 2: Morph title fades in
+      const morphFadeIn = easeOutCubic(mapRange(progress, 0.15, 0.30, 0, 1));
+      target.morphOpacity = progress >= 0.15
+        ? Math.min(1, morphFadeIn + mapRange(progress, 0.30, 0.35, 0, 1))
+        : morphFadeIn;
 
-      // ─── PHASE 2→3 (0.20 → 0.35): Title morphs from center to top-left ───
-      const morphProgress = easeOutCubic(mapRange(progress, 0.20, 0.35, 0, 1));
+      // PHASE 2→3: Title morphs from center to top-left
+      const morphProgress = easeOutCubic(mapRange(progress, 0.30, 0.55, 0, 1));
+      target.innerTop = 50 + (18 - 50) * morphProgress;
+      target.innerLeft = 50 + (4 - 50) * morphProgress;
+      target.innerTx = -50 * (1 - morphProgress);
+      target.innerTy = -50 * (1 - morphProgress);
+      target.headingScale = 1 - 0.3 * morphProgress;
 
-      // Position interpolation: center → top-left
-      // Target position: top: ~15%, left: ~4% (padded from edge)
-      const topStart = 50;
-      const topEnd = 18;
-      const leftStart = 50;
-      const leftEnd = 4;
-      const currentTop = topStart + (topEnd - topStart) * morphProgress;
-      const currentLeft = leftStart + (leftEnd - leftStart) * morphProgress;
+      // Counter
+      target.counterOpacity = mapRange(progress, 0.45, 0.55, 0, 1);
 
-      // Transform: from translate(-50%, -50%) to translate(0, 0)
-      const translateXPct = -50 * (1 - morphProgress);
-      const translateYPct = -50 * (1 - morphProgress);
+      // PHASE 3: Cards panel fades in
+      target.panelOpacity = easeOutCubic(mapRange(progress, 0.50, 0.65, 0, 1));
+      target.panelTranslateY = mapRange(progress, 0.50, 0.65, 40, 0);
 
-      // Scale: heading gets smaller when moving to top-left
-      const headingScale = 1 - 0.3 * morphProgress; // 1 → 0.7
+      // Shader darkening
+      target.dimOpacity = mapRange(progress, 0.05, 0.55, 0, 0.6);
+    }
 
-      morphTitleInner.style.top = `${currentTop}%`;
-      morphTitleInner.style.left = `${currentLeft}%`;
-      morphTitleInner.style.transform = `translate(${translateXPct}%, ${translateYPct}%)`;
+    function applyLerp() {
+      const f = LERP_FACTOR;
 
-      // Scale the heading text
+      cur.contentOpacity = lerp(cur.contentOpacity, target.contentOpacity, f);
+      cur.contentScale = lerp(cur.contentScale, target.contentScale, f);
+      cur.contentTranslateY = lerp(cur.contentTranslateY, target.contentTranslateY, f);
+      cur.morphOpacity = lerp(cur.morphOpacity, target.morphOpacity, f);
+      cur.innerTop = lerp(cur.innerTop, target.innerTop, f);
+      cur.innerLeft = lerp(cur.innerLeft, target.innerLeft, f);
+      cur.innerTx = lerp(cur.innerTx, target.innerTx, f);
+      cur.innerTy = lerp(cur.innerTy, target.innerTy, f);
+      cur.headingScale = lerp(cur.headingScale, target.headingScale, f);
+      cur.counterOpacity = lerp(cur.counterOpacity, target.counterOpacity, f);
+      cur.panelOpacity = lerp(cur.panelOpacity, target.panelOpacity, f);
+      cur.panelTranslateY = lerp(cur.panelTranslateY, target.panelTranslateY, f);
+      cur.dimOpacity = lerp(cur.dimOpacity, target.dimOpacity, f);
+
+      heroContentEl.style.opacity = cur.contentOpacity;
+      heroContentEl.style.transform = `scale(${cur.contentScale}) translateY(${cur.contentTranslateY}px)`;
+      heroContentEl.style.visibility = cur.contentOpacity <= 0.01 ? 'hidden' : 'visible';
+
+      morphTitle.style.opacity = cur.morphOpacity;
+
+      morphTitleInner.style.top = `${cur.innerTop}%`;
+      morphTitleInner.style.left = `${cur.innerLeft}%`;
+      morphTitleInner.style.transform = `translate(${cur.innerTx}%, ${cur.innerTy}%)`;
+
       if (morphHeading) {
-        morphHeading.style.transform = `scale(${headingScale})`;
-        morphHeading.style.textAlign = morphProgress > 0.5 ? 'left' : 'center';
+        morphHeading.style.transform = `scale(${cur.headingScale})`;
       }
 
-      // Label also aligns left
-      if (morphLabel) {
-        morphLabel.style.textAlign = morphProgress > 0.5 ? 'left' : 'center';
-      }
-
-      // Counter fades in during morph
       if (heroCardsCounter) {
-        heroCardsCounter.style.opacity = mapRange(progress, 0.28, 0.35, 0, 1);
+        heroCardsCounter.style.opacity = cur.counterOpacity;
       }
 
-      // ─── PHASE 3 (0.30 → 0.40): Cards panel fades in from below ───
-      const panelOpacity = easeOutCubic(mapRange(progress, 0.30, 0.40, 0, 1));
-      const panelTranslateY = mapRange(progress, 0.30, 0.40, 40, 0);
-      heroCardsPanel.style.opacity = panelOpacity;
-      heroCardsPanel.style.transform = `translateY(${panelTranslateY}px)`;
-      heroCardsPanel.style.pointerEvents = panelOpacity > 0.5 ? 'auto' : 'none';
+      heroCardsPanel.style.opacity = cur.panelOpacity;
+      heroCardsPanel.style.transform = `translateY(${cur.panelTranslateY}px)`;
+      heroCardsPanel.style.pointerEvents = cur.panelOpacity > 0.5 ? 'auto' : 'none';
 
-      // ─── PHASE 4 (0.40 → 1.0): Cards cycle one by one ───
-      if (progress >= 0.40 && totalCards > 0) {
-        const cardProgress = mapRange(progress, 0.40, 0.95, 0, 1);
-        const activeIndex = Math.min(
-          Math.floor(cardProgress * totalCards),
-          totalCards - 1
-        );
+      const heroSection = document.getElementById('heroSection');
+      if (heroSection) {
+        heroSection.style.setProperty('--dim-opacity', cur.dimOpacity);
+      }
+    }
 
-        if (activeIndex !== lastActiveCard) {
-          lastActiveCard = activeIndex;
+    function animationLoop() {
+      computeTargets();
+      applyLerp();
+      requestAnimationFrame(animationLoop);
+    }
 
-          // Update counter
-          if (heroCardsCounter) {
-            heroCardsCounter.textContent = `${String(activeIndex + 1).padStart(2, '0')} / ${String(totalCards).padStart(2, '0')}`;
+    computeTargets();
+    cur = { ...target };
+    applyLerp();
+    requestAnimationFrame(animationLoop);
+
+    // ─── Horizontal Carousel: drag-to-scroll + center card detection ───
+    if (heroCardsCarousel && totalCards > 0) {
+      // Detect which card is closest to center and highlight it
+      function updateCenterCard() {
+        const wrapperRect = heroCardsCarousel.getBoundingClientRect();
+        const wrapperCenter = wrapperRect.left + wrapperRect.width / 2;
+        let closestIdx = 0;
+        let closestDist = Infinity;
+
+        heroCards.forEach((card, i) => {
+          const cardRect = card.getBoundingClientRect();
+          const cardCenter = cardRect.left + cardRect.width / 2;
+          const dist = Math.abs(cardCenter - wrapperCenter);
+          if (dist < closestDist) {
+            closestDist = dist;
+            closestIdx = i;
           }
+        });
 
-          // Auto-scroll carousel to center active card
-          const activeCard = heroCards[activeIndex];
-          const cardLeft = activeCard.offsetLeft;
-          const cardWidth = activeCard.offsetWidth;
-          const wrapperWidth = heroCardsCarousel.offsetWidth;
-          const scrollTarget = cardLeft - (wrapperWidth / 2) + (cardWidth / 2);
-          heroCardsCarousel.scrollTo({ left: scrollTarget, behavior: 'smooth' });
+        heroCards.forEach((card, i) => {
+          if (i === closestIdx) {
+            card.classList.add('card-center');
+          } else {
+            card.classList.remove('card-center');
+          }
+        });
 
-          // Highlight active, dim others
-          heroCards.forEach((card, i) => {
-            if (i === activeIndex) {
-              card.style.opacity = '1';
-              card.style.transform = 'scale(1)';
-            } else {
-              card.style.opacity = '0.35';
-              card.style.transform = 'scale(0.92)';
-            }
-          });
+        // Update counter
+        if (heroCardsCounter) {
+          heroCardsCounter.textContent = `${String(closestIdx + 1).padStart(2, '0')} / ${String(totalCards).padStart(2, '0')}`;
         }
       }
 
-      // ─── Shader darkening (continuous) ───
-      const dimOpacity = mapRange(progress, 0.05, 0.35, 0, 0.6);
-      const heroSection = document.getElementById('heroSection');
-      if (heroSection) {
-        heroSection.style.setProperty('--dim-opacity', dimOpacity);
-      }
+      // Update on carousel scroll
+      heroCardsCarousel.addEventListener('scroll', updateCenterCard, { passive: true });
+      // Initial update
+      updateCenterCard();
 
-      ticking = false;
+      // Drag-to-scroll
+      let isDragging = false;
+      let startX = 0;
+      let scrollLeftStart = 0;
+
+      heroCardsCarousel.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        startX = e.pageX - heroCardsCarousel.offsetLeft;
+        scrollLeftStart = heroCardsCarousel.scrollLeft;
+        heroCardsCarousel.style.scrollBehavior = 'auto';
+      });
+
+      heroCardsCarousel.addEventListener('mouseleave', () => {
+        isDragging = false;
+        heroCardsCarousel.style.scrollBehavior = 'smooth';
+      });
+
+      heroCardsCarousel.addEventListener('mouseup', () => {
+        isDragging = false;
+        heroCardsCarousel.style.scrollBehavior = 'smooth';
+      });
+
+      heroCardsCarousel.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+        const x = e.pageX - heroCardsCarousel.offsetLeft;
+        const walk = (x - startX) * 1.5;
+        heroCardsCarousel.scrollLeft = scrollLeftStart - walk;
+      });
+
+      // Navigation arrows
+      const prevBtn = heroCardsPanel.querySelector('.carousel-nav-prev');
+      const nextBtn = heroCardsPanel.querySelector('.carousel-nav-next');
+      const cardScrollAmount = 280; // card width + gap
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+          heroCardsCarousel.scrollBy({ left: -cardScrollAmount, behavior: 'smooth' });
+        });
+      }
+      if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+          heroCardsCarousel.scrollBy({ left: cardScrollAmount, behavior: 'smooth' });
+        });
+      }
     }
-
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        requestAnimationFrame(updateScrollTransition);
-        ticking = true;
-      }
-    }, { passive: true });
-
-    // Initial call
-    updateScrollTransition();
   }
 
   // === Services Tabs ===

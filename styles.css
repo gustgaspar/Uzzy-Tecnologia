@@ -406,6 +406,7 @@ img {
 .shader-content {
   position: relative;
   z-index: 10;
+  will-change: opacity, transform;
 }
 
 .shader-subtitle {
@@ -494,8 +495,8 @@ img {
 /* === Cinematic Scroll Stage === */
 .scroll-stage {
   position: relative;
-  height: 600vh;
-  /* Provides scroll runway: hero fadeout + morph title + cards cycling */
+  height: 300vh;
+  /* Provides scroll runway: hero fadeout + morph title + cards reveal */
 }
 
 .scroll-stage .hero {
@@ -510,10 +511,9 @@ img {
   position: absolute;
   inset: 0;
   z-index: 5;
-  /* Above cards panel (4) */
   pointer-events: none;
   opacity: 0;
-  will-change: opacity, transform;
+  will-change: opacity;
 }
 
 .morph-title-inner {
@@ -522,13 +522,12 @@ img {
   align-items: flex-end;
   justify-content: space-between;
   gap: 2rem;
-  /* Start centered — JS will interpolate position */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: max-content;
   max-width: 90vw;
-  transition: none;
+  will-change: top, left, transform;
 }
 
 .morph-title-text {
@@ -542,6 +541,7 @@ img {
   color: rgba(255, 255, 255, 0.7);
   text-transform: uppercase;
   margin-bottom: 1.5rem;
+  text-align: left;
 }
 
 .morph-label .bracket {
@@ -554,7 +554,7 @@ img {
   font-weight: 500;
   line-height: 1.25;
   color: var(--white);
-  text-align: center;
+  text-align: left;
   transform-origin: top left;
   will-change: transform;
 }
@@ -583,20 +583,26 @@ img {
   padding: 2rem 2rem 3rem;
   opacity: 0;
   pointer-events: none;
-  will-change: opacity;
+  will-change: opacity, transform;
 }
 
 .hero-cards-carousel {
   display: flex;
-  gap: 1.5rem;
+  gap: 1.25rem;
   overflow-x: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
   scroll-behavior: smooth;
-  padding: 0 2rem 1rem;
+  padding: 40px 2rem 1rem;
   max-width: 1400px;
   width: 100%;
   margin: 0 auto;
+  cursor: grab;
+  align-items: flex-start;
+}
+
+.hero-cards-carousel:active {
+  cursor: grabbing;
 }
 
 .hero-cards-carousel::-webkit-scrollbar {
@@ -605,8 +611,53 @@ img {
 
 .hero-cards-carousel .case-card {
   flex-shrink: 0;
-  width: 380px;
-  min-height: 300px;
+  width: 230px;
+  min-height: 480px;
+  border-radius: 16px;
+  transform: translateY(60px) scale(0.95);
+  opacity: 0.7;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hero-cards-carousel .case-card.card-center {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+/* Carousel Navigation Arrows */
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.carousel-nav:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-nav-prev {
+  left: 1rem;
+}
+
+.carousel-nav-next {
+  right: 1rem;
 }
 
 /* Animated elements — GPU compositing hints */
