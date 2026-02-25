@@ -353,20 +353,40 @@ void main(void) {
     }
 
     function animationLoop() {
+      if (window.innerWidth <= 1024) {
+        requestAnimationFrame(animationLoop);
+        return; // Bail out on mobile to let native CSS take over
+      }
+
       computeTargets();
       applyLerp();
       requestAnimationFrame(animationLoop);
     }
 
-    computeTargets();
-    cur = { ...target };
-    applyLerp();
+    if (window.innerWidth > 1024) {
+      computeTargets();
+      cur = { ...target };
+      applyLerp();
+    } else {
+      // Force initial mobile CSS state (overrides any inline lingering)
+      heroCardsPanel.style.opacity = '1';
+      heroCardsPanel.style.pointerEvents = 'auto';
+    }
     requestAnimationFrame(animationLoop);
 
     // ─── Horizontal Carousel: drag-to-scroll + center card detection ───
     if (heroCardsCarousel && totalCards > 0) {
       // Detect which card is closest to center and highlight it
       function updateCenterCard() {
+        if (window.innerWidth <= 1024) {
+          // Apply full opacity and native flow and bail out
+          heroCards.forEach(card => {
+            card.style.setProperty('--card-reveal', '1');
+            card.classList.add('card-center'); // just to ensure no weird transforms
+          });
+          return;
+        }
+
         const wrapperRect = heroCardsCarousel.getBoundingClientRect();
         // Focus point is fixed near the left edge to always highlight the first visible card
         const focusPoint = wrapperRect.left + 180;
@@ -413,7 +433,17 @@ void main(void) {
 
       // Update on carousel scroll
       heroCardsCarousel.addEventListener('scroll', updateCenterCard, { passive: true });
-      // Initial update
+
+      // Initialize layout and clear mobile scroll cache
+      if (window.innerWidth <= 1024) {
+        // iOS aggressive caching resets scroll AFTER execution, so we loop shortly
+        let ticks = 0;
+        const resetScroll = setInterval(() => {
+          heroCardsCarousel.scrollTo({ left: 0, top: 0, behavior: 'auto' });
+          ticks++;
+          if (ticks > 10) clearInterval(resetScroll);
+        }, 50);
+      }
       updateCenterCard();
 
       // Drag-to-scroll
@@ -576,8 +606,28 @@ void main(void) {
   // === Meteors Effect on Service Cards ===
   const serviceCardsMeteors = document.querySelectorAll('.service-card');
   serviceCardsMeteors.forEach(card => {
+    // Wrap the card to add the glow behind it
+    const wrapper = document.createElement('div');
+    wrapper.className = 'relative group w-full h-full';
+
+    // Insert wrapper before card, then move card inside
+    card.parentNode.insertBefore(wrapper, card);
+
+    // Create the glow element
+    const glow = document.createElement('div');
+    // Using Aceternity UI style glow: blue to teal, scaled down, heavily blurred
+    glow.className = 'absolute inset-0 h-full w-full bg-gradient-to-r from-blue-500 to-teal-500 transform scale-[0.80] bg-red-500 rounded-full blur-3xl opacity-20 group-hover:opacity-60 transition-opacity duration-500';
+    glow.style.zIndex = '0';
+
+    wrapper.appendChild(glow);
+    wrapper.appendChild(card);
+
     card.style.position = 'relative';
     card.style.overflow = 'hidden';
+    card.style.zIndex = '1';
+    card.style.height = '100%';
+    card.style.background = '#0f172a'; // tailwind slate-900 to match demo
+    card.style.borderColor = '#1e293b'; // border-slate-800
 
     // Create a container for the meteors to sit behind the card content
     const meteorsContainer = document.createElement('div');
