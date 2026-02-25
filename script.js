@@ -573,5 +573,36 @@ void main(void) {
     });
   });
 
+  // === Meteors Effect on Service Cards ===
+  const serviceCardsMeteors = document.querySelectorAll('.service-card');
+  serviceCardsMeteors.forEach(card => {
+    card.style.position = 'relative';
+    card.style.overflow = 'hidden';
+
+    // Create a container for the meteors to sit behind the card content
+    const meteorsContainer = document.createElement('div');
+    meteorsContainer.className = 'absolute inset-0 pointer-events-none z-0';
+
+    // Ensure existing content is above the meteors
+    Array.from(card.children).forEach(child => {
+      child.style.position = 'relative';
+      child.style.zIndex = '1';
+    });
+
+    const count = 20;
+    for (let i = 0; i < count; i++) {
+      const span = document.createElement('span');
+      span.className = "animate-meteor-effect absolute top-1/2 left-1/2 h-0.5 w-0.5 rounded-[9999px] bg-slate-500 shadow-[0_0_0_1px_#ffffff10] rotate-[215deg] " +
+        "before:content-[''] before:absolute before:top-1/2 before:transform before:-translate-y-[50%] before:w-[50px] before:h-[1px] before:bg-gradient-to-r before:from-[#64748b] before:to-transparent";
+
+      span.style.top = '0px';
+      span.style.left = Math.floor(Math.random() * (400 - -400) + -400) + 'px';
+      span.style.animationDelay = (Math.random() * (0.8 - 0.2) + 0.2) + 's';
+      span.style.animationDuration = Math.floor(Math.random() * (10 - 2) + 2) + 's';
+
+      meteorsContainer.appendChild(span);
+    }
+    card.insertBefore(meteorsContainer, card.firstChild);
+  });
 
 });
