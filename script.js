@@ -567,6 +567,9 @@ void main(void) {
   );
   revealElements.forEach(el => el.classList.add('reveal'));
 
+  // Also observe elements that already have .reveal class (e.g. About page)
+  const allRevealElements = document.querySelectorAll('.reveal');
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -577,10 +580,10 @@ void main(void) {
     });
   }, { root: null, rootMargin: '0px 0px -60px 0px', threshold: 0.1 });
 
-  revealElements.forEach(el => observer.observe(el));
+  allRevealElements.forEach(el => observer.observe(el));
 
   // Staggered reveals
-  document.querySelectorAll('.services-grid, .stats-grid, .client-logos').forEach(container => {
+  document.querySelectorAll('.services-grid, .stats-grid, .client-logos, .about-stats-grid, .about-values-grid, .about-approach-timeline').forEach(container => {
     Array.from(container.children).forEach((item, i) => {
       item.style.transitionDelay = `${i * 0.08}s`;
     });
