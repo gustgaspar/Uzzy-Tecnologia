@@ -583,7 +583,7 @@ void main(void) {
   allRevealElements.forEach(el => observer.observe(el));
 
   // Staggered reveals
-  document.querySelectorAll('.services-grid, .stats-grid, .client-logos, .about-stats-grid, .about-values-grid, .about-approach-timeline').forEach(container => {
+  document.querySelectorAll('.services-grid, .stats-grid, .client-logos, .about-stats-grid, .about-values-grid, .about-approach-timeline, .ai-feature-list').forEach(container => {
     Array.from(container.children).forEach((item, i) => {
       item.style.transitionDelay = `${i * 0.08}s`;
     });

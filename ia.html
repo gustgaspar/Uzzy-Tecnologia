@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inteligência Artificial | Uzzy Tecnologia</title>
+    <meta name="description"
+        content="Soluções de Inteligência Artificial da Uzzy Tecnologia — Sites com IA, Sistemas Automatizados, Chatbots, Automação de Processos e Integrações com APIs de IA.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['Sora', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        "meteor-effect": "meteor 5s linear infinite",
+                    },
+                    keyframes: {
+                        meteor: {
+                            "0%": { transform: "rotate(215deg) translateX(0)", opacity: "1" },
+                            "70%": { opacity: "1" },
+                            "100%": {
+                                transform: "rotate(215deg) translateX(-500px)",
+                                opacity: "0",
+                            },
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+    <link rel="icon" type="image/png" href="img/Logo.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Skip links -->
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+    <a href="#footer" class="skip-link">Pular para o rodapé</a>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-inner">
+            <a href="index.html" class="logo">
+                <img class="logo-icon" src="img/Logo.png" alt="Uzzy Logo" width="30" height="30">
+                <span class="logo-text">Uzzy</span>
+            </a>
+            <nav class="nav-main">
+                <a href="index.html#servicos" class="nav-link">Serviços</a>
+                <a href="ia.html" class="nav-link" style="color: var(--pink);">Inteligência Artificial</a>
+                <a href="sobre.html" class="nav-link">Sobre</a>
+                <a href="index.html#cases" class="nav-link">Cases</a>
+                <a href="#" class="nav-link">Blog</a>
+            </nav>
+            <div class="header-actions">
+                <button class="btn-lang">
+                    PT
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <path
+                            d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                    </svg>
+                </button>
+                <a href="https://wa.me/5567991174434?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Uzzy%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es."
+                    target="_blank" rel="noopener noreferrer" class="btn-primary btn-contact-header">
+                    Entrar em contato
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <nav class="mobile-nav">
+            <a href="index.html#servicos" class="mobile-nav-link">Serviços</a>
+            <a href="ia.html" class="mobile-nav-link" style="color: var(--pink);">Inteligência Artificial</a>
+            <a href="sobre.html" class="mobile-nav-link">Sobre</a>
+            <a href="index.html#cases" class="mobile-nav-link">Cases</a>
+            <a href="#" class="mobile-nav-link">Blog</a>
+        </nav>
+    </div>
+
+    <main id="main-content">
+        <!-- AI Hero -->
+        <section class="ai-hero">
+            <div class="ai-hero-bg"></div>
+            <div class="container ai-hero-content">
+                <p class="ai-hero-label">
+                    <span class="bracket">&lt;</span> INTELIGÊNCIA ARTIFICIAL <span class="bracket">/&gt;</span>
+                </p>
+                <h1 class="ai-hero-title">
+                    Projetos com
+                    <span class="ai-hero-accent">Inteligência Artificial</span>
+                </h1>
+                <p class="ai-hero-subtitle">Na UzzyTech, elevamos sua empresa ao próximo nível com soluções inovadoras
+                    baseadas em Inteligência Artificial. Unimos tecnologia de ponta e expertise em dados para oferecer
+                    projetos que otimizam processos, melhoram a experiência do usuário e geram resultados
+                    concretos.</p>
+            </div>
+            <!-- Decorative gradient orbs -->
+            <div class="ai-hero-orb ai-hero-orb-1"></div>
+            <div class="ai-hero-orb ai-hero-orb-2"></div>
+            <div class="ai-hero-orb ai-hero-orb-3"></div>
+        </section>
+
+        <!-- Section 1: Sites com IA -->
+        <section class="ai-service-section ai-section-dark">
+            <div class="container">
+                <div class="ai-service-grid reveal">
+                    <div class="ai-service-content">
+                        <p class="ai-service-label">
+                            <span class="bracket">&lt;</span> SITES COM IA <span class="bracket">/&gt;</span>
+                        </p>
+                        <h2 class="ai-service-heading">Criação de Sites com <span class="ai-service-accent">Inteligência
+                                Artificial</span></h2>
+                        <p class="ai-service-desc">Transforme a presença online da sua empresa com sites criados por IA.
+                            Utilizamos algoritmos avançados para gerar layouts responsivos e conteúdo relevante de forma
+                            automática, garantindo rapidez na entrega e personalização de acordo com o seu público.</p>
+                        <ul class="ai-feature-list">
+                            <li>
+                                <div class="ai-feature-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12" />
+                                    </svg>
+                                </div>
+                                <span>Layouts gerados automaticamente com base no segmento de mercado</span>
+                            </li>
+                            <li>
+                                <div class="ai-feature-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12" />
+                                    </svg>
+                                </div>
+                                <span>Conteúdo adaptativo e otimizado para SEO</span>
+                            </li>
+                            <li>
+                                <div class="ai-feature-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12" />
+                                    </svg>
+                                </div>
+                                <span>Integração com CMS inteligente e fácil edição de textos e imagens</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="ai-service-image-wrapper">
+                        <div class="ai-service-image-glow"></div>
+                        <img src="img/img-ai-sites.png" alt="Criação de sites com Inteligência Artificial"
+                            class="ai-service-image" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Sistemas Automatizados -->
+        <section class="ai-service-section ai-section-darker">
+            <div class="container">
+                <div class="ai-service-grid ai-service-grid-reverse reveal">
+                    <div class="ai-service-content">
+                        <p class="ai-service-label">
+                            <span class="bracket">&lt;</span> SISTEMAS INTELIGENTES <span class="bracket">/&gt;</span>
+                        </p>
+                        <h2 class="ai-service-heading">Sistemas Automatizados <span class="ai-service-accent">com
+                                IA</span></h2>
+                        <p class="ai-service-desc">Crie sistemas de gestão inteligentes que analisam dados e facilitam a
+                            tomada de decisão. Desenvolvemos painéis de controle interativos com visualização de
+                            métricas
+                            em tempo real e relatórios inteligentes que apontam tendências e insights
+                            automaticamente.</p>
+                        <ul class="ai-feature-list">
+                            <li>
+                                <div class="ai-feature-icon ai-feature-icon-purple">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12" />
+                                    </svg>
+                                </div>
+                                <span>Dashboards customizados com gráficos dinâmicos e indicadores-chave</span>
+                            </li>
+                            <li>
+                                <div class="ai-feature-icon ai-feature-icon-purple">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12" />
+                                    </svg>
+                                </div>
+                                <span>Relatórios automatizados e análises preditivas por IA</span>
+                            </li>
+                            <li>
+                                <div class="ai-feature-icon ai-feature-icon-purple">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12" />
+                                    </svg>
+                                </div>
+                                <span>Integração de dados de diferentes fontes para visão 360° do negócio</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="ai-service-image-wrapper">
+                        <div class="ai-service-image-glow ai-glow-purple"></div>
+                        <img src="img/img-ai-dashboard.png" alt="Sistemas automatizados com Inteligência Artificial"
+                            class="ai-service-image" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Chatbots -->
+        <section class="ai-service-section ai-section-dark">
+            <div class="container">
+                <div class="ai-service-grid reveal">
+                    <div class="ai-service-content">
+                        <p class="ai-service-label">
+                            <span class="bracket">&lt;</span> CHATBOTS & ASSISTENTES <span class="bracket">/&gt;</span>
+                        </p>
+                        <h2 class="ai-service-heading">Chatbots e Assistentes <span class="ai-service-accent">Virtuais
+                                Personalizados</span></h2>
+                        <p class="ai-service-desc">Aprimore o atendimento ao cliente com chatbots baseados em IA e
+                            assistentes virtuais sob medida. Desenvolvemos soluções de conversação que entendem e
+                            interpretam a linguagem natural do usuário, oferecendo respostas precisas e contexto
+                            relevante, 24/7.</p>
+                        <ul class="ai-feature-list">
+                            <li>
+                                <div class="ai-feature-icon ai-feature-icon-teal">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12" />
+                                    </svg>
+                                </div>
+                                <span>Chatbots inteligentes com processamento de linguagem natural</span>
+                            </li>
+                            <li>
+                                <div class="ai-feature-icon ai-feature-icon-teal">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12" />
+                                    </svg>
+                                </div>
+                                <span>Fluxos de diálogo personalizados para o seu negócio</span>
+                            </li>
+                            <li>
+                                <div class="ai-feature-icon ai-feature-icon-teal">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12" />
+                                    </svg>
+                                </div>
+                                <span>Integração a sistemas internos (ERP, CRM) para automação de
+                                    atendimentos</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="ai-service-image-wrapper">
+                        <div class="ai-service-image-glow ai-glow-teal"></div>
+                        <img src="img/img-ai-chatbot.png" alt="Chatbots e assistentes virtuais com IA"
+                            class="ai-service-image" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Automatização de Processos -->
+        <section class="ai-service-section ai-section-darker">
+            <div class="container">
+                <div class="ai-service-grid ai-service-grid-reverse reveal">
+                    <div class="ai-service-content">
+                        <p class="ai-service-label">
+                            <span class="bracket">&lt;</span> AUTOMAÇÃO EMPRESARIAL <span class="bracket">/&gt;</span>
+                        </p>
+                        <h2 class="ai-service-heading">Automatização de <span class="ai-service-accent">Processos
+                                Empresariais</span></h2>
+                        <p class="ai-service-desc">Otimize operações internas por meio da automação inteligente de
+                            processos. Aplicamos inteligência artificial para mapear rotinas manuais e criar fluxos
+                            automatizados que conectam diferentes departamentos, reduzindo custos e erros
+                            operacionais.</p>
+                        <ul class="ai-feature-list">
+                            <li>
+                                <div class="ai-feature-icon ai-feature-icon-orange">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12" />
+                                    </svg>
+                                </div>
+                                <span>RPA com suporte de IA para tarefas repetitivas</span>
+                            </li>
+                            <li>
+                                <div class="ai-feature-icon ai-feature-icon-orange">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12" />
+                                    </svg>
+                                </div>
+                                <span>Fluxos de trabalho automatizados entre departamentos</span>
+                            </li>
+                            <li>
+                                <div class="ai-feature-icon ai-feature-icon-orange">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12" />
+                                    </svg>
+                                </div>
+                                <span>Monitoramento inteligente de desempenho e alertas preditivos</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="ai-service-image-wrapper">
+                        <div class="ai-service-image-glow ai-glow-orange"></div>
+                        <img src="img/img-ai-automation.png" alt="Automatização de processos empresariais com IA"
+                            class="ai-service-image" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Integrações com APIs -->
+        <section class="ai-service-section ai-section-dark">
+            <div class="container">
+                <div class="ai-service-grid reveal">
+                    <div class="ai-service-content">
+                        <p class="ai-service-label">
+                            <span class="bracket">&lt;</span> INTEGRAÇÕES <span class="bracket">/&gt;</span>
+                        </p>
+                        <h2 class="ai-service-heading">Integrações com <span class="ai-service-accent">Ferramentas de
+                                IA</span></h2>
+                        <p class="ai-service-desc">Potencialize suas soluções integrando tecnologias de inteligência
+                            artificial líderes de mercado. Conectamos o seu sistema a APIs avançadas como GPT, visão
+                            computacional e machine learning, agregando funcionalidades sem desenvolver do zero.</p>
+                        <ul class="ai-feature-list">
+                            <li>
+                                <div class="ai-feature-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12" />
+                                    </svg>
+                                </div>
+                                <span>Integração com APIs de NLP (como GPT) para geração automática de textos</span>
+                            </li>
+                            <li>
+                                <div class="ai-feature-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12" />
+                                    </svg>
+                                </div>
+                                <span>APIs de visão computacional (detecção de faces, objetos e OCR)</span>
+                            </li>
+                            <li>
+                                <div class="ai-feature-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12" />
+                                    </svg>
+                                </div>
+                                <span>Conexão com plataformas de análise preditiva e chatbots de terceiros</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="ai-service-image-wrapper">
+                        <div class="ai-service-image-glow"></div>
+                        <img src="img/img-ai-integrations.png" alt="Integrações com ferramentas de IA"
+                            class="ai-service-image" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section" id="contato">
+            <div class="cta-bg-art">
+                <svg class="cta-bg-svg" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M400 50C250 50 150 150 150 250C150 350 250 400 400 350C550 300 700 200 650 100C620 30 500 50 400 50Z"
+                        fill="rgba(255,255,255,0.08)" />
+                    <path d="M500 0C350 20 200 100 250 250C300 400 500 400 600 300C700 200 700 -20 500 0Z"
+                        fill="rgba(255,255,255,0.05)" />
+                </svg>
+            </div>
+            <div class="container cta-content">
+                <div class="cta-text">
+                    <h2 class="cta-title">Pronto para transformar seu negócio com IA?</h2>
+                    <p class="cta-desc">Fale com nossos especialistas e descubra como a inteligência artificial pode
+                        acelerar seus resultados.</p>
+                </div>
+                <a href="https://wa.me/5567991174434?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Uzzy%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20IA."
+                    target="_blank" rel="noopener noreferrer" class="btn-white cta-btn">
+                    Entrar em contato
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="footer-hero">
+                <h2 class="footer-headline">Vamos Construir Soluções<br>Digitais Inteligentes</h2>
+                <p class="footer-description">A Uzzy Tecnologia é um Ateliê de Software e IA focado na criação de sites
+                    de alta
+                    performance e sistemas de automação inteligente para empresas em crescimento.</p>
+                <a href="mailto:comercial@uzzytech.com" class="footer-email-cta">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                        <polyline points="22,6 12,13 2,6" />
+                    </svg>
+                    comercial@uzzytech.com
+                </a>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <p class="footer-copy">2025 © Uzzy Tecnologia. Todos os direitos reservados.</p>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Política de Privacidade</a>
+                    <a href="#" class="footer-link">Trabalhe Conosco</a>
+                </div>
+                <span class="footer-credits">Criado por Uzzy Tecnologia</span>
+            </div>
+        </div>
+        <div class="footer-watermark">Uzzy Tech</div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
