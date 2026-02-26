@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnóstico Estratégico | Uzzy Tecnologia</title>
+    <meta name="description"
+        content="Diagnóstico estratégico para transformação digital. Analisamos seu negócio, identificamos gargalos e oportunidades reais de crescimento.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['Sora', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    <link rel="icon" type="image/png" href="img/Logo.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+    <a href="#footer" class="skip-link">Pular para o rodapé</a>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-inner">
+            <a href="index.html" class="logo">
+                <img class="logo-icon" src="img/Logo.png" alt="Uzzy Logo" width="30" height="30">
+                <span class="logo-text">Uzzy</span>
+            </a>
+            <nav class="nav-main">
+                <a href="index.html#servicos" class="nav-link" style="color: var(--pink);">Serviços</a>
+                <a href="ia.html" class="nav-link">Inteligência Artificial</a>
+                <a href="sobre.html" class="nav-link">Sobre</a>
+            </nav>
+            <div class="header-actions">
+                <button class="btn-lang">
+                    PT
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <path
+                            d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                    </svg>
+                </button>
+                <a href="https://wa.me/5567991174434?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Uzzy%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es."
+                    target="_blank" rel="noopener noreferrer" class="btn-primary btn-contact-header">
+                    Entrar em contato
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <nav class="mobile-nav">
+            <a href="index.html#servicos" class="mobile-nav-link">Serviços</a>
+            <a href="ia.html" class="mobile-nav-link">Inteligência Artificial</a>
+            <a href="sobre.html" class="mobile-nav-link">Sobre</a>
+        </nav>
+    </div>
+
+    <main id="main-content">
+        <!-- Hero -->
+        <section class="svc-hero">
+            <div class="container svc-hero-inner">
+                <div class="svc-hero-text">
+                    <p class="svc-hero-label">
+                        <span class="bracket">&lt;</span> DIAGNÓSTICO ESTRATÉGICO <span class="bracket">/&gt;</span>
+                    </p>
+                    <h1 class="svc-hero-title">
+                        Diagnóstico
+                        <span class="svc-accent">Estratégico</span>
+                    </h1>
+                    <p class="svc-hero-desc">O Diagnóstico Estratégico é o alicerce de qualquer projeto bem-sucedido. É
+                        a
+                        nossa forma de mergulhar no seu negócio para identificar o problema real — não apenas o
+                        sintoma.</p>
+                </div>
+                <div class="svc-hero-icon svc-icon-pink">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="M21 21l-4.35-4.35" />
+                        <rect x="7" y="8" width="8" height="1" rx="0.5" fill="currentColor" />
+                        <rect x="7" y="11" width="6" height="1" rx="0.5" fill="currentColor" />
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tabs Content -->
+        <section class="svc-content-section">
+            <div class="container">
+                <div class="svc-tabs">
+                    <button class="svc-tab-btn active" data-svc-tab="porque">Por que começar pelo Diagnóstico</button>
+                    <button class="svc-tab-btn" data-svc-tab="como">Como trabalhamos</button>
+                    <button class="svc-tab-btn" data-svc-tab="entrega">O que entregamos</button>
+                </div>
+
+                <div class="svc-tab-panel active" id="svc-tab-porque">
+                    <h3>Ele mitiga riscos futuros e evita investimentos mal direcionados. Desenha um caminho claro para
+                        o desenvolvimento, garantindo que você construa produtos certos e para targets claros.</h3>
+                    <p>Sem diagnóstico, projetos de tecnologia correm o risco de resolver o problema errado. Na Uzzy,
+                        acreditamos que a clareza estratégica antes da execução é o que separa projetos que geram
+                        impacto
+                        dos que apenas consomem recursos.</p>
+                    <ul>
+                        <li>
+                            <span class="svc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></span>
+                            Redução de até 60% nos custos de retrabalho
+                        </li>
+                        <li>
+                            <span class="svc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></span>
+                            Alinhamento entre expectativas do negócio e capacidade técnica
+                        </li>
+                        <li>
+                            <span class="svc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></span>
+                            Roadmap estratégico com prioridades e prazos realistas
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="svc-tab-panel" id="svc-tab-como">
+                    <h3>Imersão no negócio, análise de processos e mapeamento de oportunidades digitais com uma
+                        abordagem prática e colaborativa.</h3>
+                    <p>Nosso time conduz workshops, entrevistas com stakeholders e análise de dados operacionais para
+                        construir um retrato completo da situação atual e identificar as melhores alavancas de
+                        crescimento.</p>
+                    <ul>
+                        <li>
+                            <span class="svc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></span>
+                            Workshops de imersão com equipes-chave do cliente
+                        </li>
+                        <li>
+                            <span class="svc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></span>
+                            Análise de processos, ferramentas e fluxos existentes
+                        </li>
+                        <li>
+                            <span class="svc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></span>
+                            Benchmarking competitivo e análise de mercado digital
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="svc-tab-panel" id="svc-tab-entrega">
+                    <h3>Documentação estratégica completa com análise de cenário, recomendações técnicas e roadmap de
+                        execução prioritizado.</h3>
+                    <p>Ao final do diagnóstico, você recebe um material executivo que orienta decisões de investimento
+                        em
+                        tecnologia com segurança e clareza — pronto para ser executado.</p>
+                    <ul>
+                        <li>
+                            <span class="svc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></span>
+                            Relatório de diagnóstico com mapa de gargalos e oportunidades
+                        </li>
+                        <li>
+                            <span class="svc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></span>
+                            Roadmap técnico com fases, entregas e estimativas
+                        </li>
+                        <li>
+                            <span class="svc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></span>
+                            Recomendação de stack técnico e arquitetura inicial
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="footer-hero">
+                <h2 class="footer-headline">Vamos Construir Soluções<br>Digitais Inteligentes</h2>
+                <p class="footer-description">A Uzzy Tecnologia é um Ateliê de Software e IA focado na criação de sites
+                    de alta
+                    performance e sistemas de automação inteligente para empresas em crescimento.</p>
+                <a href="mailto:comercial@uzzytech.com" class="footer-email-cta">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                        <polyline points="22,6 12,13 2,6" />
+                    </svg>
+                    comercial@uzzytech.com
+                </a>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <p class="footer-copy">2025 © Uzzy Tecnologia. Todos os direitos reservados.</p>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Política de Privacidade</a>
+                    <a href="#" class="footer-link">Trabalhe Conosco</a>
+                </div>
+                <span class="footer-credits">Criado por Uzzy Tecnologia</span>
+            </div>
+        </div>
+        <div class="footer-watermark">Uzzy Tech</div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Service page tabs
+        document.querySelectorAll('.svc-tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.svc-tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.svc-tab-panel').forEach(p => p.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById('svc-tab-' + btn.dataset.svcTab).classList.add('active');
+            });
+        });
+    </script>
+</body>
+
+</html>

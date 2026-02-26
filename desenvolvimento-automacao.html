@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desenvolvimento & Automação | Uzzy Tecnologia</title>
+    <meta name="description"
+        content="Desenvolvimento de software e automação inteligente. Implementamos soluções escaláveis, integrações inteligentes e automações que reduzem esforço manual.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['Sora', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    <link rel="icon" type="image/png" href="img/Logo.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+    <a href="#footer" class="skip-link">Pular para o rodapé</a>
+
+    <header class="header" id="header">
+        <div class="header-inner">
+            <a href="index.html" class="logo">
+                <img class="logo-icon" src="img/Logo.png" alt="Uzzy Logo" width="30" height="30">
+                <span class="logo-text">Uzzy</span>
+            </a>
+            <nav class="nav-main">
+                <a href="index.html#servicos" class="nav-link" style="color: var(--pink);">Serviços</a>
+                <a href="ia.html" class="nav-link">Inteligência Artificial</a>
+                <a href="sobre.html" class="nav-link">Sobre</a>
+            </nav>
+            <div class="header-actions">
+                <button class="btn-lang">PT
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <path
+                            d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                    </svg>
+                </button>
+                <a href="https://wa.me/5567991174434?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Uzzy%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es."
+                    target="_blank" rel="noopener noreferrer" class="btn-primary btn-contact-header">
+                    Entrar em contato
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <nav class="mobile-nav">
+            <a href="index.html#servicos" class="mobile-nav-link">Serviços</a>
+            <a href="ia.html" class="mobile-nav-link">Inteligência Artificial</a>
+            <a href="sobre.html" class="mobile-nav-link">Sobre</a>
+        </nav>
+    </div>
+
+    <main id="main-content">
+        <section class="svc-hero">
+            <div class="container svc-hero-inner">
+                <div class="svc-hero-text">
+                    <p class="svc-hero-label">
+                        <span class="bracket">&lt;</span> DESENVOLVIMENTO & AUTOMAÇÃO <span class="bracket">/&gt;</span>
+                    </p>
+                    <h1 class="svc-hero-title">
+                        Desenvolvimento
+                        <span class="svc-accent">& Automação</span>
+                    </h1>
+                    <p class="svc-hero-desc">É aqui que a visão se transforma em realidade. Desenvolvemos software sob
+                        medida e implementamos automações inteligentes que eliminam trabalho manual e aceleram os
+                        resultados do seu negócio.</p>
+                </div>
+                <div class="svc-hero-icon svc-icon-pink">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M8 5l-5 7 5 7" />
+                        <path d="M16 5l5 7-5 7" />
+                        <path d="M14 4l-4 16" />
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <section class="svc-content-section">
+            <div class="container">
+                <div class="svc-tabs">
+                    <button class="svc-tab-btn active" data-svc-tab="porque">Por que automatizar</button>
+                    <button class="svc-tab-btn" data-svc-tab="como">Como desenvolvemos</button>
+                    <button class="svc-tab-btn" data-svc-tab="entrega">O que entregamos</button>
+                </div>
+
+                <div class="svc-tab-panel active" id="svc-tab-porque">
+                    <h3>Automatizar processos não é apenas sobre tecnologia — é sobre liberar pessoas para o que
+                        realmente importa e criar operações previsíveis e escaláveis.</h3>
+                    <p>Empresas que automatizam seus processos críticos reduzem erros operacionais, aceleram entregas e
+                        ganham vantagem competitiva. Na Uzzy, cada automação é construída para gerar ROI mensurável.</p>
+                    <ul>
+                        <li>
+                            <span class="svc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></span>
+                            Redução de até 80% no tempo gasto com tarefas repetitivas
+                        </li>
+                        <li>
+                            <span class="svc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></span>
+                            Processos mais confiáveis e livres de erros humanos
+                        </li>
+                        <li>
+                            <span class="svc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></span>
+                            Equipe focada em atividades estratégicas de alto valor
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="svc-tab-panel" id="svc-tab-como">
+                    <h3>Sprints curtos, entregas contínuas e comunicação transparente. Nosso processo ágil garante
+                        visibilidade e resultados desde a primeira semana.</h3>
+                    <p>Trabalhamos com metodologia ágil, priorizando entregas incrementais que geram valor rapidamente.
+                        Cada sprint é planejado em conjunto com o cliente para máximo alinhamento.</p>
+                    <ul>
+                        <li>
+                            <span class="svc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></span>
+                            Metodologia ágil com sprints de 1-2 semanas
+                        </li>
+                        <li>
+                            <span class="svc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></span>
+                            Code review, testes automatizados e CI/CD
+                        </li>
+                        <li>
+                            <span class="svc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></span>
+                            Demos semanais e feedback contínuo do cliente
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="svc-tab-panel" id="svc-tab-entrega">
+                    <h3>Software sob medida, APIs robustas, integrações inteligentes e automações que funcionam 24/7 sem
+                        intervenção manual.</h3>
+                    <p>Entregamos código limpo, documentado e pronto para produção, com infraestrutura configurada e
+                        monitoramento ativo desde o primeiro dia.</p>
+                    <ul>
+                        <li>
+                            <span class="svc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></span>
+                            Aplicações web e sistemas de gestão personalizados
+                        </li>
+                        <li>
+                            <span class="svc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></span>
+                            Integrações com ERPs, CRMs, gateways de pagamento e APIs externas
+                        </li>
+                        <li>
+                            <span class="svc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></span>
+                            Automações de fluxos, notificações e processamento de dados
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="footer-hero">
+                <h2 class="footer-headline">Vamos Construir Soluções<br>Digitais Inteligentes</h2>
+                <p class="footer-description">A Uzzy Tecnologia é um Ateliê de Software e IA focado na criação de sites
+                    de alta performance e sistemas de automação inteligente para empresas em crescimento.</p>
+                <a href="mailto:comercial@uzzytech.com" class="footer-email-cta">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                        <polyline points="22,6 12,13 2,6" />
+                    </svg>
+                    comercial@uzzytech.com
+                </a>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <p class="footer-copy">2025 © Uzzy Tecnologia. Todos os direitos reservados.</p>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Política de Privacidade</a>
+                    <a href="#" class="footer-link">Trabalhe Conosco</a>
+                </div>
+                <span class="footer-credits">Criado por Uzzy Tecnologia</span>
+            </div>
+        </div>
+        <div class="footer-watermark">Uzzy Tech</div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.querySelectorAll('.svc-tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.svc-tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.svc-tab-panel').forEach(p => p.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById('svc-tab-' + btn.dataset.svcTab).classList.add('active');
+            });
+        });
+    </script>
+</body>
+
+</html>

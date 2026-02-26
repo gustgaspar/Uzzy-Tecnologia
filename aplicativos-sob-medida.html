@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicativos Sob Medida | Uzzy Tecnologia</title>
+    <meta name="description"
+        content="Criamos aplicativos personalizados para Android e iOS com foco em usabilidade, performance e crescimento.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: { extend: { fontFamily: { heading: ['Sora', 'sans-serif'], body: ['Inter', 'sans-serif'] } } },
+        }
+    </script>
+    <link rel="icon" type="image/png" href="img/Logo.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+    <a href="#footer" class="skip-link">Pular para o rodapé</a>
+
+    <header class="header" id="header">
+        <div class="header-inner">
+            <a href="index.html" class="logo">
+                <img class="logo-icon" src="img/Logo.png" alt="Uzzy Logo" width="30" height="30">
+                <span class="logo-text">Uzzy</span>
+            </a>
+            <nav class="nav-main">
+                <a href="index.html#servicos" class="nav-link" style="color: var(--pink);">Serviços</a>
+                <a href="ia.html" class="nav-link">Inteligência Artificial</a>
+                <a href="sobre.html" class="nav-link">Sobre</a>
+            </nav>
+            <div class="header-actions">
+                <button class="btn-lang">PT
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <path
+                            d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                    </svg>
+                </button>
+                <a href="https://wa.me/5567991174434?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Uzzy%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es."
+                    target="_blank" rel="noopener noreferrer" class="btn-primary btn-contact-header">
+                    Entrar em contato
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle"
+                aria-label="Menu"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <nav class="mobile-nav">
+            <a href="index.html#servicos" class="mobile-nav-link">Serviços</a>
+            <a href="ia.html" class="mobile-nav-link">Inteligência Artificial</a>
+            <a href="sobre.html" class="mobile-nav-link">Sobre</a>
+        </nav>
+    </div>
+
+    <main id="main-content">
+        <section class="svc-hero">
+            <div class="container svc-hero-inner">
+                <div class="svc-hero-text">
+                    <p class="svc-hero-label">
+                        <span class="bracket">&lt;</span> APLICATIVOS SOB MEDIDA <span class="bracket">/&gt;</span>
+                    </p>
+                    <h1 class="svc-hero-title">
+                        Aplicativos
+                        <span class="svc-accent">Sob Medida</span>
+                    </h1>
+                    <p class="svc-hero-desc">Criamos aplicativos nativos e híbridos que levam seu negócio para a palma
+                        da
+                        mão dos seus clientes. Design intuitivo, performance nativa e funcionalidades pensadas para
+                        engajamento e conversão.</p>
+                </div>
+                <div class="svc-hero-icon svc-icon-teal">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+                        <line x1="12" y1="18" x2="12.01" y2="18" />
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <section class="svc-content-section">
+            <div class="container">
+                <div class="svc-tabs">
+                    <button class="svc-tab-btn active" data-svc-tab="porque">Por que investir em mobile</button>
+                    <button class="svc-tab-btn" data-svc-tab="como">Como criamos seu app</button>
+                    <button class="svc-tab-btn" data-svc-tab="entrega">O que entregamos</button>
+                </div>
+
+                <div class="svc-tab-panel active" id="svc-tab-porque">
+                    <h3>O mobile não é mais um diferencial — é uma necessidade. Mais de 70% do tráfego digital acontece
+                        em dispositivos móveis, e seus clientes esperam experiências rápidas e intuitivas.</h3>
+                    <p>Um aplicativo bem projetado aumenta a retenção de clientes, melhora a experiência de uso e cria
+                        um canal direto e permanente com seu público. Na Uzzy, cada app é construído para gerar valor
+                        real.</p>
+                    <ul>
+                        <li>
+                            <span class="svc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></span>
+                            Canal direto com clientes via push notifications
+                        </li>
+                        <li>
+                            <span class="svc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></span>
+                            Experiência personalizada e engajamento superior
+                        </li>
+                        <li>
+                            <span class="svc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></span>
+                            Aumento médio de 25% na conversão com apps nativos
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="svc-tab-panel" id="svc-tab-como">
+                    <h3>Do conceito ao lançamento nas stores, trabalhamos com um processo iterativo que garante
+                        qualidade, performance e alinhamento com os objetivos do negócio.</h3>
+                    <p>Desenvolvemos para Android e iOS com tecnologias de ponta, garantindo que seu app funcione
+                        perfeitamente em qualquer dispositivo e aproveite os recursos nativos de cada plataforma.</p>
+                    <ul>
+                        <li>
+                            <span class="svc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></span>
+                            Design UX/UI mobile-first com prototipação interativa
+                        </li>
+                        <li>
+                            <span class="svc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></span>
+                            Desenvolvimento com React Native, Flutter ou nativo
+                        </li>
+                        <li>
+                            <span class="svc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></span>
+                            Testes em dispositivos reais e otimização de performance
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="svc-tab-panel" id="svc-tab-entrega">
+                    <h3>Aplicativo publicado nas stores, otimizado para performance e pronto para escalar com o
+                        crescimento do seu negócio.</h3>
+                    <p>Entregamos o app completo com documentação, painel administrativo e suporte para a publicação nas
+                        lojas Google Play e App Store.</p>
+                    <ul>
+                        <li>
+                            <span class="svc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></span>
+                            App para Android e iOS publicado nas stores
+                        </li>
+                        <li>
+                            <span class="svc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></span>
+                            Painel administrativo para gestão de conteúdo
+                        </li>
+                        <li>
+                            <span class="svc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></span>
+                            Analytics integrado para acompanhar métricas de uso
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="footer-hero">
+                <h2 class="footer-headline">Vamos Construir Soluções<br>Digitais Inteligentes</h2>
+                <p class="footer-description">A Uzzy Tecnologia é um Ateliê de Software e IA focado na criação de sites
+                    de alta performance e sistemas de automação inteligente para empresas em crescimento.</p>
+                <a href="mailto:comercial@uzzytech.com" class="footer-email-cta">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                        <polyline points="22,6 12,13 2,6" />
+                    </svg>
+                    comercial@uzzytech.com
+                </a>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <p class="footer-copy">2025 © Uzzy Tecnologia. Todos os direitos reservados.</p>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Política de Privacidade</a>
+                    <a href="#" class="footer-link">Trabalhe Conosco</a>
+                </div>
+                <span class="footer-credits">Criado por Uzzy Tecnologia</span>
+            </div>
+        </div>
+        <div class="footer-watermark">Uzzy Tech</div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.querySelectorAll('.svc-tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.svc-tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.svc-tab-panel').forEach(p => p.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById('svc-tab-' + btn.dataset.svcTab).classList.add('active');
+            });
+        });
+    </script>
+</body>
+
+</html>
