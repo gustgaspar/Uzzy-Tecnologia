@@ -233,6 +233,9 @@ void main(void) {
   const morphTitleInner = morphTitle ? morphTitle.querySelector('.morph-title-inner') : null;
   const morphHeading = morphTitle ? morphTitle.querySelector('.morph-heading') : null;
   const morphLabel = morphTitle ? morphTitle.querySelector('.morph-label') : null;
+  const heroTextReasons = document.getElementById('heroTextReasons');
+  const reasonText1 = document.getElementById('reasonText1');
+  const reasonText2 = document.getElementById('reasonText2');
   const heroCardsPanel = document.getElementById('heroCardsPanel');
   const heroCardsCarousel = document.getElementById('heroCardsCarousel');
   const heroCardsCounter = document.getElementById('heroCardsCounter');
@@ -260,6 +263,8 @@ void main(void) {
       innerTop: 50, innerLeft: 50, innerTx: -50, innerTy: -50,
       headingScale: 1,
       counterOpacity: 0,
+      reason1Opacity: 0, reason1TranslateY: 40,
+      reason2Opacity: 0, reason2TranslateY: 40,
       panelOpacity: 0, panelTranslateY: 40,
       dimOpacity: 0
     };
@@ -289,22 +294,37 @@ void main(void) {
         : morphFadeIn;
 
       // PHASE 2→3: Title morphs from center to just below navbar
-      const morphProgress = easeOutCubic(mapRange(progress, 0.30, 0.55, 0, 1));
+      const morphProgress = easeOutCubic(mapRange(progress, 0.30, 0.45, 0, 1));
       target.innerTop = 50 + (finalTopPct - 50) * morphProgress;
       target.innerLeft = 50 + (4 - 50) * morphProgress;
       target.innerTx = -50 * (1 - morphProgress);
       target.innerTy = -50 * (1 - morphProgress);
       target.headingScale = 1 - 0.3 * morphProgress;
 
-      // Counter
-      target.counterOpacity = mapRange(progress, 0.45, 0.55, 0, 1);
+      // PHASE 4: Reason 1 (Left) fades in
+      const r1FadeIn = easeOutCubic(mapRange(progress, 0.40, 0.50, 0, 1));
+      const r1FadeOut = easeOutCubic(mapRange(progress, 0.70, 0.75, 0, 1));
+      target.reason1Opacity = clamp(r1FadeIn - r1FadeOut, 0, 1);
+      // Slides in from y=40 to y=0 and stays there
+      target.reason1TranslateY = mapRange(progress, 0.40, 0.50, 40, 0) - mapRange(progress, 0.70, 0.75, 0, 40);
 
-      // PHASE 3: Cards panel fades in
-      target.panelOpacity = easeOutCubic(mapRange(progress, 0.50, 0.63, 0, 1));
-      target.panelTranslateY = mapRange(progress, 0.50, 0.63, 40, 0);
+      // PHASE 5: Reason 2 (Right) fades in
+      // Starts a bit after reason 1 is fully in, but reason 1 STAYS
+      const r2FadeIn = easeOutCubic(mapRange(progress, 0.55, 0.65, 0, 1));
+      const r2FadeOut = easeOutCubic(mapRange(progress, 0.70, 0.75, 0, 1)); // Fades out same time as r1
+      target.reason2Opacity = clamp(r2FadeIn - r2FadeOut, 0, 1);
+      // Slides in from y=40 to y=0 and stays there
+      target.reason2TranslateY = mapRange(progress, 0.55, 0.65, 40, 0) - mapRange(progress, 0.70, 0.75, 0, 40);
 
-      // Shader darkening
-      target.dimOpacity = mapRange(progress, 0.05, 0.55, 0, 0.6);
+      // Counter maps late with cards
+      target.counterOpacity = mapRange(progress, 0.75, 0.85, 0, 1);
+
+      // PHASE 6: Cards panel fades in
+      target.panelOpacity = easeOutCubic(mapRange(progress, 0.75, 0.85, 0, 1));
+      target.panelTranslateY = mapRange(progress, 0.75, 0.85, 40, 0);
+
+      // Shader darkening extended
+      target.dimOpacity = mapRange(progress, 0.05, 0.85, 0, 0.6);
     }
 
     function applyLerp() {
@@ -320,6 +340,10 @@ void main(void) {
       cur.innerTy = lerp(cur.innerTy, target.innerTy, f);
       cur.headingScale = lerp(cur.headingScale, target.headingScale, f);
       cur.counterOpacity = lerp(cur.counterOpacity, target.counterOpacity, f);
+      cur.reason1Opacity = lerp(cur.reason1Opacity, target.reason1Opacity, f);
+      cur.reason1TranslateY = lerp(cur.reason1TranslateY, target.reason1TranslateY, f);
+      cur.reason2Opacity = lerp(cur.reason2Opacity, target.reason2Opacity, f);
+      cur.reason2TranslateY = lerp(cur.reason2TranslateY, target.reason2TranslateY, f);
       cur.panelOpacity = lerp(cur.panelOpacity, target.panelOpacity, f);
       cur.panelTranslateY = lerp(cur.panelTranslateY, target.panelTranslateY, f);
       cur.dimOpacity = lerp(cur.dimOpacity, target.dimOpacity, f);
@@ -340,6 +364,18 @@ void main(void) {
 
       if (heroCardsCounter) {
         heroCardsCounter.style.opacity = cur.counterOpacity;
+      }
+
+      if (reasonText1) {
+        reasonText1.style.opacity = cur.reason1Opacity;
+        reasonText1.style.transform = `translateY(${cur.reason1TranslateY}px)`;
+        reasonText1.style.visibility = cur.reason1Opacity <= 0.01 ? 'hidden' : 'visible';
+      }
+
+      if (reasonText2) {
+        reasonText2.style.opacity = cur.reason2Opacity;
+        reasonText2.style.transform = `translateY(${cur.reason2TranslateY}px)`;
+        reasonText2.style.visibility = cur.reason2Opacity <= 0.01 ? 'hidden' : 'visible';
       }
 
       heroCardsPanel.style.opacity = cur.panelOpacity;
@@ -371,6 +407,16 @@ void main(void) {
       // Force initial mobile CSS state (overrides any inline lingering)
       heroCardsPanel.style.opacity = '1';
       heroCardsPanel.style.pointerEvents = 'auto';
+      if (reasonText1) {
+        reasonText1.style.opacity = '1';
+        reasonText1.style.visibility = 'visible';
+        reasonText1.style.transform = 'none';
+      }
+      if (reasonText2) {
+        reasonText2.style.opacity = '1';
+        reasonText2.style.visibility = 'visible';
+        reasonText2.style.transform = 'none';
+      }
     }
     requestAnimationFrame(animationLoop);
 

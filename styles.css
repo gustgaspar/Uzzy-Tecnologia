@@ -572,6 +572,52 @@ img {
   padding-bottom: 0.25rem;
 }
 
+/* === Hero Text Reasons (Scroll Revealed on Desktop) === */
+.hero-text-reasons {
+  position: absolute;
+  top: 40%;
+  left: 5%;
+  right: 5%;
+  transform: translateY(-50%);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.reason-text-item {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 45%;
+  max-width: 600px;
+  opacity: 0;
+  visibility: hidden;
+  will-change: opacity, transform;
+}
+
+.reason-text-item.left {
+  left: 0;
+}
+
+.reason-text-item.right {
+  right: 0;
+}
+
+.reason-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.25;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.reason-desc {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.6;
+}
+
 /* === Hero Cards Panel — overlays inside hero === */
 .hero-cards-panel {
   position: absolute;
@@ -589,7 +635,10 @@ img {
 .hero-cards-carousel {
   display: flex;
   gap: 1.25rem;
-  overflow-x: auto;
+  overflow-x: visible;
+  /* No scroll on desktop */
+  justify-content: center;
+  /* Center the cards to fit the screen */
   scrollbar-width: none;
   -ms-overflow-style: none;
   scroll-behavior: smooth;
@@ -627,41 +676,6 @@ img {
   opacity: var(--card-reveal, 0);
   transform:
     translateY(calc(50px * (1 - var(--card-reveal, 0)))) translateX(calc(50px * (1 - var(--card-reveal, 0))));
-}
-
-/* Carousel Navigation Arrows */
-.carousel-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: white;
-  font-size: 1.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 10;
-  transition: background 0.3s ease, transform 0.3s ease;
-}
-
-.carousel-nav:hover {
-  background: rgba(255, 255, 255, 0.25);
-  transform: translateY(-50%) scale(1.1);
-}
-
-.carousel-nav-prev {
-  left: 1rem;
-}
-
-.carousel-nav-next {
-  right: 1rem;
 }
 
 /* Animated elements — GPU compositing hints */
@@ -786,10 +800,10 @@ img {
   width: 380px;
   min-height: 340px;
   border-radius: var(--radius-card);
-  padding: 2rem;
+  padding: 2.5rem 2rem 2rem 2rem;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
   position: relative;
   overflow: hidden;
   cursor: pointer;
@@ -1784,14 +1798,16 @@ img {
   position: relative;
 }
 
-.about-approach-timeline::before {
-  content: '';
+.about-approach-line {
   position: absolute;
   top: 35px;
   left: calc(12.5% + 1rem);
   right: calc(12.5% + 1rem);
   height: 2px;
   background: linear-gradient(90deg, var(--pink), var(--purple), #FB923C);
+}
+
+.about-approach-line.reveal.visible {
   opacity: 0.3;
 }
 
@@ -1861,7 +1877,7 @@ img {
     gap: 3rem;
   }
 
-  .about-approach-timeline::before {
+  .about-approach-line {
     display: none;
   }
 }
@@ -2321,6 +2337,30 @@ img {
     display: none !important;
   }
 
+  .hero-text-reasons {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    pointer-events: auto !important;
+  }
+
+  .reason-text-item {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
   .hero-cards-panel {
     position: relative !important;
     opacity: 1 !important;
@@ -2334,8 +2374,7 @@ img {
     width: 100vw;
     padding: 1rem 1rem 2rem;
     scroll-padding-left: 1rem;
-    /* Fixes browser skipping the first card due to snap offset */
-    scroll-snap-type: x mandatory;
+    /* Removed scroll-snap to prevent vertical scroll locking */
     /* Force native scrolling on mobile */
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
@@ -2346,7 +2385,6 @@ img {
   .hero-cards-carousel .case-card {
     opacity: 1 !important;
     transform: none !important;
-    scroll-snap-align: start !important;
     /* Maintain portrait proportions on phone */
     min-width: 260px;
     height: 400px;
