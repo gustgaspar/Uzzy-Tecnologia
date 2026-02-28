@@ -98,7 +98,10 @@
     <main id="main-content">
         <div class="scroll-stage" id="scrollStage">
             <section class="hero shader-hero" id="heroSection">
-                <canvas id="shaderCanvas" class="shader-canvas"></canvas>
+                <!-- Animated Gradient Background -->
+                <div id="gradientBackground" class="absolute inset-0 overflow-hidden" style="z-index: 0;">
+                    <div id="gradientContainer" class="absolute inset-0 transition-transform"></div>
+                </div>
                 <div class="hero-content shader-content" id="heroContent">
                     <p class="hero-subtitle shader-subtitle" id="heroSubtitle">
                         <span class="bracket">&lt;</span> ATELIÊ DE SOFTWARE E IA <span class="bracket">/&gt;</span>

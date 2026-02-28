@@ -1,0 +1,26 @@
+{
+  "name": "uzzy-tecnologia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gustgaspar/Uzzy-Tecnologia.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/gustgaspar/Uzzy-Tecnologia/issues"
+  },
+  "homepage": "https://github.com/gustgaspar/Uzzy-Tecnologia#readme",
+  "dependencies": {
+    "@lottiefiles/dotlottie-react": "^0.18.3",
+    "framer-motion": "^12.34.3",
+    "lucide-react": "^0.575.0"
+  }
+}
