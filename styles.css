@@ -2307,29 +2307,26 @@ img {
     pointer-events: none !important;
   }
 
-  /* Make sure the main content is fully visible and takes the first full screen */
   #heroContent {
     position: relative !important;
     opacity: 1 !important;
     transform: none !important;
     visibility: visible !important;
-    min-height: auto;
-    /* Fallback to natural height to prevent trapping empty space */
+    min-height: 85vh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    padding-top: 8vh;
-    /* Places content nicely in the upper half below header */
-    margin-bottom: 6rem;
-    /* GIVES LARGE SPACE AFTER BUTTON */
+    justify-content: center;
+    align-items: center;
+    padding-top: 5vh;
+    margin-bottom: 0;
   }
 
   .morph-title {
     position: relative !important;
     opacity: 1 !important;
     pointer-events: auto !important;
-    margin-top: 3rem;
-    margin-bottom: 1rem;
+    margin-top: 0;
+    margin-bottom: 0;
   }
 
   .morph-title-inner {
@@ -2341,7 +2338,7 @@ img {
     width: 100%;
     flex-direction: column;
     align-items: flex-start;
-    gap: 1rem;
+    gap: 0;
   }
 
   .hero-cards-counter {
@@ -2356,10 +2353,11 @@ img {
     width: 100% !important;
     max-width: 100% !important;
     padding: 0 2rem;
+    margin-top: 1rem;
     margin-bottom: 2rem;
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: 2rem;
     pointer-events: auto !important;
   }
 
@@ -2370,6 +2368,8 @@ img {
     transform: none !important;
     opacity: 1 !important;
     visibility: visible !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
 
   .hero-cards-panel {
