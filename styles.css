@@ -795,6 +795,10 @@ img {
   display: none;
 }
 
+.mobile-only-card {
+  display: none !important;
+}
+
 .case-card {
   flex-shrink: 0;
   width: 380px;
@@ -2325,8 +2329,9 @@ img {
     position: relative !important;
     opacity: 1 !important;
     pointer-events: auto !important;
-    margin-top: 0;
-    margin-bottom: 0;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 0 2rem;
   }
 
   .morph-title-inner {
@@ -2339,6 +2344,18 @@ img {
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
+  }
+
+  .morph-label {
+    margin-bottom: 0.25rem;
+    font-size: 0.70rem;
+    letter-spacing: 0.1em;
+  }
+
+  .morph-heading {
+    font-size: clamp(1.4rem, 6vw, 2.2rem);
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
   }
 
   .hero-cards-counter {
@@ -2355,7 +2372,7 @@ img {
     padding: 0 2rem;
     margin-top: 1rem;
     margin-bottom: 2rem;
-    display: flex;
+    display: none !important;
     flex-direction: column;
     gap: 2rem;
     pointer-events: auto !important;
@@ -2378,6 +2395,10 @@ img {
     pointer-events: auto !important;
     transform: none !important;
     padding: 0;
+  }
+
+  .mobile-only-card {
+    display: flex !important;
   }
 
   .hero-cards-carousel {
