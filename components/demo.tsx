@@ -1,35 +1,32 @@
-"use client"
-import AnimatedGradientBackground from "@/components/ui/animated-gradient-background";
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-import { AnimatePresence, motion, useInView, Variants } from "framer-motion";
-import { useRef } from "react";
+"use client";
 
-const DemoVariant1 = () => {
+import { motion } from "framer-motion";
+import React from "react";
+import { AuroraBackground } from "@/components/ui/aurora-background";
+
+export function AuroraBackgroundDemo() {
     return (
-        <div className="relative w-full h-screen overflow-hidden">
-            {/* Gradient Background */}
-            <AnimatedGradientBackground />
-
-            <div className="relative z-10 flex flex-col items-center justify-start h-full px-4 pt-32 text-center">
-                <div delay={0.4}
-                    duration={0.9}
-                >
-                    <DotLottieReact
-                        src="https://lottie.host/8cf4ba71-e5fb-44f3-8134-178c4d389417/0CCsdcgNIP.json"
-                        loop
-                        autoplay
-                    />
+        <AuroraBackground>
+            <motion.div
+                initial={{ opacity: 0.0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{
+                    delay: 0.3,
+                    duration: 0.8,
+                    ease: "easeInOut",
+                }}
+                className="relative flex flex-col gap-4 items-center justify-center px-4"
+            >
+                <div className="text-3xl md:text-7xl font-bold dark:text-white text-center">
+                    Background lights are cool you know.
                 </div>
-                <p className="mt-4 text-lg text-gray-300 md:text-xl max-w-lg">
-                    A customizable animated radial gradient background with a subtle
-                    breathing effect.
-                </p>
-            </div>
-        </div>
+                <div className="font-extralight text-base md:text-4xl dark:text-neutral-200 py-4">
+                    And this, is chemical burn.
+                </div>
+                <button className="bg-black dark:bg-white rounded-full w-fit text-white dark:text-black px-4 py-2">
+                    Debug now
+                </button>
+            </motion.div>
+        </AuroraBackground>
     );
-};
-
-
-
-
-export { DemoVariant1 };
+}
